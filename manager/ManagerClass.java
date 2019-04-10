@@ -11,7 +11,6 @@ import iterators.*;
 
 /**
  * @authors m.lami & tbmsilva
- *
  */
 
 public class ManagerClass implements Manager {
@@ -200,6 +199,14 @@ public class ManagerClass implements Manager {
 		}
 		base.removeDroneHangar(swarmID);
 		drones.removeDrone(swarmID);
+	}
+	
+	public void changeBase(String droneID, String originBase, String destinationBase) {
+		Base b1 = getBase(originBase);
+		Base b2 = getBase(destinationBase);
+		Drone drone = drones.getDrone(droneID);
+		b1.removeDroneHangar(droneID);
+		b2.addDrone(drone);
 	}
 
 	/**
