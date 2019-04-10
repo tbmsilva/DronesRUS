@@ -4,7 +4,7 @@
 package flight;
 
 /**
- * @author tbmsilva
+ * @author tbmsilva & m.lami
  *
  */
 public class FlightCollectionClass implements FlightCollection {

@@ -4,7 +4,7 @@
 package iterators;
 
 /**
- * @author tbmsilva
+ * @author tbmsilva & m.lami
  *
  */
 public interface IteratorFlights extends Iterator {

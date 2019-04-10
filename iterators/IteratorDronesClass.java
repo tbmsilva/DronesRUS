@@ -10,9 +10,7 @@ import drones.Drone;
  *
  */
 public class IteratorDronesClass extends AbstractIterator implements IteratorDrones {
-	/**
-	 * 
-	 */
+
 	public IteratorDronesClass(Drone[] drones, int counter) {
 		super(drones,counter);
 	}

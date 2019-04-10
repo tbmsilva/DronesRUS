@@ -6,6 +6,9 @@ package flight;
 import bases.*;
 import drones.*;
 
+ /**
+  * @author tbmsilva & m.lami
+  */
 public abstract class AbstractFlight implements Flight {
 	
 	public static final int DISTANCE_PER_TICK = 10;

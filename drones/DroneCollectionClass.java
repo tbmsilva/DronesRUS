@@ -6,11 +6,14 @@ package drones;
 import iterators.*;
 
 /**
- * @author tbmsilva
+ * @author tbmsilva & m.lami
  *
  */
 public class DroneCollectionClass implements DroneCollection {
+	
+	//Drone array stating size
 	private static final int DRONE_SIZE_START = 10;
+	
 	private static final int GROWTH_FACTOR = 2;
 
 	private Drone[] drones;
@@ -41,16 +44,23 @@ public class DroneCollectionClass implements DroneCollection {
 	public Drone getDrone(String id) {
 		return drones[searchIndexId(id)];
 	}
-	
+
 	public void removeDrone(String droneID) {
 		removeAt(searchIndexId(droneID));
 	}
 
-	private int searchIndexId(String id) {
+	/**
+	 * Search index by ID of drones
+	 * 
+	 * @param droneID - drone's id to be searched for
+	 * @return index position of drone with given ID, unless there is no drone with
+	 *         that ID, in that case, it returns -1
+	 */
+	private int searchIndexId(String droneID) {
 		int i = 0;
 		int res = -1;
 		while ((i < counter) && (res == -1)) {
-			if (drones[i].droneID().equals(id))
+			if (drones[i].droneID().equals(droneID))
 				res = i;
 			i++;
 		}
@@ -77,9 +87,15 @@ public class DroneCollectionClass implements DroneCollection {
 		drones = temp;
 	}
 
+	/**
+	 * Removes the drone in the given index
+	 * 
+	 * @param index - index of drone to be removed
+	 * @pre <code>index >= 0 && index <= counter </code>
+	 */
 	private void removeAt(int index) {
-		for(int i = index; i < counter; i++) {
-			drones[i] = drones[i+1];
+		for (int i = index; i < counter; i++) {
+			drones[i] = drones[i + 1];
 		}
 		counter--;
 	}

@@ -16,6 +16,7 @@ import iterators.*;
 
 public class ManagerClass implements Manager {
 
+	// Type of drone diferentiation
 	private static final String HERMIT = "hermit";
 
 	// Swarm Error Codes
@@ -25,11 +26,13 @@ public class ManagerClass implements Manager {
 	private static final int ERROR_SWARM_ID = 3;
 	private static final int SWARM_CHECK_OK = 4;
 
+	// Collections
 	private BaseCollection bases;
 	private DroneCollection drones;
 	private OrderCollection orders;
 	private FlightCollection flights;
-	
+
+	// Current simulation tick
 	private int tick;
 
 	public ManagerClass() {
@@ -100,8 +103,8 @@ public class ManagerClass implements Manager {
 		return bases.noDronesInServiceBay(base);
 	}
 
-	public void moveDroneToServiceBay(Base base,Drone drone) {
-		bases.moveDroneToServiceBay(base,drone);
+	public void moveDroneToServiceBay(Base base, Drone drone) {
+		bases.moveDroneToServiceBay(base, drone);
 	}
 
 	public Iterator iteratorDrones() {
@@ -185,12 +188,12 @@ public class ManagerClass implements Manager {
 		orders.addOrder(orderID, dimension, latitude, longitude);
 		bases.getBase(baseID).addOrder(orderID, dimension, latitude, longitude);
 	}
-	
+
 	public void disband(String swarmID, Base base) {
 		Swarm swarm = getSwarm(swarmID);
 		DroneCollection temp = swarm.getFormingDrones();
 		Iterator it = temp.iterator();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			Drone d = (Drone) it.next();
 			base.addDrone(d);
 			drones.addDrone(d);
@@ -241,6 +244,13 @@ public class ManagerClass implements Manager {
 		bases.getBase(base).addDrone(drone);
 	}
 
+	/**
+	 * Checks if there is any drone IDs alike withing given droneIDs String array.
+	 * 
+	 * @param droneIDS - String array with inputed drone IDs.
+	 * @return -1 if there are no drones with same IDs. If there are, returns the
+	 *         index of repeated droneID in String array.
+	 */
 	private int swarmSameID(String[] droneIDS) {
 		int sameDroneID = -1;
 		for (int j = 0; j < droneIDS.length - 1 && sameDroneID == -1; j++) {
@@ -252,6 +262,13 @@ public class ManagerClass implements Manager {
 		return sameDroneID;
 	}
 
+	/**
+	 * Checks if there are any hermit drones in inputed droneIDs.
+	 * 
+	 * @param droneIDS - String array with inputed drone IDs.
+	 * @return -1 if there are no hermit drones. If there are, returns the index of
+	 *         hermit drone in String array.
+	 */
 	private int swarmIsHermit(String[] droneIDS) {
 		int isHermit = -1;
 		for (int i = 0; i < droneIDS.length - 1 && isHermit == -1; i++) {
@@ -261,6 +278,14 @@ public class ManagerClass implements Manager {
 		return isHermit;
 	}
 
+	/**
+	 * Checks if there are any drones in other bases other than the inputed base.
+	 * 
+	 * @param droneIDS - String array with inputed drone IDs.
+	 * @param baseID   - baseID of base to check if there are the inputed drones.
+	 * @return -1 if there are no drones outside of inputed base. If there are,
+	 *         returns the index of away drone in String array .
+	 */
 	private int swarmDroneUnavailable(String[] droneIDS, String baseID) {
 		int unavailable = -1;
 		Base b = getBase(baseID);

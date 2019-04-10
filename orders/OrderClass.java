@@ -6,7 +6,7 @@ package orders;
 import bases.*;
 
 /**
- * @author tbmsilva
+ * @author tbmsilva & m.lami
  *
  */
 public class OrderClass implements Order {

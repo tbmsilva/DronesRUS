@@ -7,7 +7,7 @@ import iterators.*;
 import bases.*;
 
 /**
- * @author tbmsilva
+ * @author tbmsilva & m.lami
  *
  */
 public class OrderCollectionClass implements OrderCollection {
