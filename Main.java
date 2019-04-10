@@ -7,10 +7,6 @@ import drones.*;
 import orders.*;
 
 /**
- * 
- */
-
-/**
  * @author m.lami & tbmsilva
  */
 public class Main {
@@ -353,7 +349,7 @@ public class Main {
 				if (!mn.getBase(originBase).isInHangar(droneId)) {
 					System.out.println(droneId + " is not at " + originBase);
 				} else {
-					int d = mn.distance(droneId, originBase, targetBase);
+					int d = mn.distance(originBase, targetBase);
 					if (!mn.hasRange(droneId, d)) {
 						System.out.println("Drone " + droneId + " cannot reach " + targetBase);
 					} else {

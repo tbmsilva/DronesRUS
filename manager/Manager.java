@@ -228,11 +228,33 @@ public interface Manager {
 	 * @param base    - base which swarm belongs to
 	 */
 	void disband(String swarmID, Base base);
-	
-	int distance(String droneId, String origin, String target);
-	
-	boolean hasRange (String droneId, int distance);
-	
-	void relocation(String droneId, String origin, String target);
+
+	/**
+	 * Calculates distance between two bases
+	 * 
+	 * @param origin - base from where the drone departs
+	 * @param target - base where the drone will land
+	 * @return distance value between the two bases
+	 */
+	int distance(String origin, String target);
+
+	/**
+	 * Checks if the given drone has enough range to get to destination
+	 * 
+	 * @param droneID  - ID of drone to check range of
+	 * @param distance - distance to compare to drone's range
+	 * @return <code>true</code> if drone's range is equal or greater than the given
+	 *         distance, <code>false</code> otherwise
+	 */
+	boolean hasRange(String droneID, int distance);
+
+	/**
+	 * Creates a Flight Object for the relocation
+	 * 
+	 * @param droneID - ID of drone being relocated
+	 * @param origin  - base of departure
+	 * @param target  - base of arrival
+	 */
+	void relocation(String droneID, String origin, String target);
 
 }

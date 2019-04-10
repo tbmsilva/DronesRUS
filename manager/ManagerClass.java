@@ -215,7 +215,7 @@ public class ManagerClass implements Manager {
 		b2.addDrone(drone);
 	}
 
-	public int distance(String droneId, String origin, String target) {
+	public int distance(String origin, String target) {
 		return getBase(origin).location().calculateDistance(getBase(target).location());
 	}
 
