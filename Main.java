@@ -341,23 +341,28 @@ public class Main {
 	}
 
 	private static void processFlyToBase(Manager mn, Scanner in) {
-			String originBase = in.nextLine();
-			String droneId = in.nextLine();
-			String targetBase = in.nextLine();
-			if(!mn.existsBase(originBase)) {
-				System.out.println("Source base " + originBase + " does not exist!");
+		String originBase = in.nextLine();
+		String droneId = in.nextLine();
+		String targetBase = in.nextLine();
+		if (!mn.existsBase(originBase)) {
+			System.out.println("Source base " + originBase + " does not exist!");
+		} else {
+			if (!mn.existsBase(targetBase)) {
+				System.out.println("Target base " + targetBase + " does not exist!");
 			} else {
-				if(!mn.existsBase(targetBase)) {
-					System.out.println("Target base " + targetBase + " does not exist!");
+				if (!mn.getBase(originBase).isInHangar(droneId)) {
+					System.out.println(droneId + " is not at " + originBase);
 				} else {
-					if(!mn.getBase(originBase).isInHangar(droneId)) {
-						System.out.println(droneId + " is not at " + originBase);
+					int d = mn.distance(droneId, originBase, targetBase);
+					if (!mn.hasRange(droneId, d)) {
+						System.out.println("Drone " + droneId + " cannot reach " + targetBase);
 					} else {
-						
+						mn.relocation(droneId, originBase, targetBase);
+						System.out.println(droneId + " flying from " + originBase + " to " + targetBase);
 					}
-					
 				}
 			}
+		}
 	}
 
 	private static void processAddOrder(Manager mn, Scanner in) {

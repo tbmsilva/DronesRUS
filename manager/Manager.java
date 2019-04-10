@@ -210,5 +210,11 @@ public interface Manager {
 	 * @param base    - base which swarm belongs to
 	 */
 	void disband(String swarmID, Base base);
+	
+	int distance(String droneId, String origin, String target);
+	
+	boolean hasRange (String droneId, int distance);
+	
+	void relocation(String droneId, String origin, String target);
 
 }
