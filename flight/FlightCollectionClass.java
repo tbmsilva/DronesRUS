@@ -22,19 +22,16 @@ public class FlightCollectionClass implements FlightCollection {
 		counter = 0;
 	}
 
-	@Override
 	public void addFlight(Flight flight) {
 		if (isFull())
 			resize();
 		flights[counter++] = flight;
 	}
 
-	@Override
 	public Flight getFlight(String droneID) {
 		return flights[searchIndexId(droneID)];
 	}
 
-	@Override
 	public Iterator iterator() {
 		return new IteratorFlightsClass(flights, counter);
 	}
@@ -51,16 +48,16 @@ public class FlightCollectionClass implements FlightCollection {
 	}
 
 	/**
-	 * Doubles the base array size
+	 * Doubles the flight array size
 	 */
 	private boolean isFull() {
 		return flights.length == counter;
 	}
 
 	/**
-	 * Checks if base array is full
+	 * Checks if flight array is full
 	 * 
-	 * @return <code>true</code> if base array is full, <code>false</code> otherwise
+	 * @return <code>true</code> if flight array is full, <code>false</code> otherwise
 	 */
 	private void resize() {
 		Flight[] temp = new Flight[flights.length * GROWTH_FACTOR];
