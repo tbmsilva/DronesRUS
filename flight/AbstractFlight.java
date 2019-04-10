@@ -14,7 +14,7 @@ public abstract class AbstractFlight implements Flight {
 	public static final int DISTANCE_PER_TICK = 10;
 
 	protected Location origin, destination;
-	private int distance, distanceTraveled;
+	private int distanceTraveled;
 	private Drone drone;
 	
 	
@@ -40,6 +40,6 @@ public abstract class AbstractFlight implements Flight {
 	}
 	
 	public int distanceTraveled(int tick) {
-		return distanceTraveled = tick * DISTANCE_PER_TICK;
+		return distanceTraveled += tick * DISTANCE_PER_TICK;
 	}
 }
