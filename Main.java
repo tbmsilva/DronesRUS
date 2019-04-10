@@ -19,7 +19,7 @@ public class Main {
 	private static final int MINIMUM_RANGE = 10;
 	private static final String HERMIT = "hermit";
 	private static final String SOCIABLE = "sociable";
-
+ //Ola sou a Mafalda
 	// Swarm Error Codes
 	private static final int ERROR_SAME_DRONE = 0;
 	private static final int ERROR_HERMIT_DRONE = 1;
