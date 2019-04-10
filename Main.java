@@ -256,7 +256,7 @@ public class Main {
 					while (itTemp.hasNext()) {
 						Drone d = (Drone) itTemp.next();
 						b.moveToServiceBay(d);
-						System.out.println(d.droneID()+ " moved to service bay.");
+						System.out.println(d.droneID() + " moved to service bay.");
 					}
 				}
 			}
