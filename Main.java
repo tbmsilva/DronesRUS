@@ -187,7 +187,7 @@ public class Main {
 				else {
 					System.out.print("Service bay: [");
 					while (itDSB.hasNext()) {
-						Drone d = (Drone) itDH.next();
+						Drone d = (Drone) itDSB.next();
 						System.out.print(d.info());
 						if (itDSB.hasNext())
 							System.out.print(", ");
@@ -234,6 +234,7 @@ public class Main {
 		String base = in.nextLine();
 		int range = in.nextInt();
 		in.nextLine();
+		DroneCollection temp = new DroneCollectionClass();
 		int dSent = 0;
 		if (!mn.existsBase(base))
 			System.out.println("Base " + base + " does not exist!");
@@ -246,13 +247,19 @@ public class Main {
 				while (itDH.hasNext()) {
 					Drone d = (Drone) itDH.next();
 					if (d.range() < range) {
-						mn.moveDroneToServiceBay(b, d);
+						temp.addDrone(d);
 						dSent++;
-						System.out.println(d.droneID() + " moved to service bay.");
 					}
 				}
 				if (dSent == 0) {
 					System.out.println(NO_DRONES_SENT_TO_SERVICE);
+				} else {
+					Iterator itTemp = temp.iterator();
+					while (itTemp.hasNext()) {
+						Drone d = (Drone) itTemp.next();
+						b.moveToServiceBay(d);
+						System.out.println(d.droneID()+ " moved to service bay.");
+					}
 				}
 			}
 		}
