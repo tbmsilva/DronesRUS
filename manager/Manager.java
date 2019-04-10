@@ -16,30 +16,30 @@ public interface Manager {
 	/**
 	 * Creates a location object for the base and creates the base
 	 * 
-	 * @param id        base's unique id
-	 * @param latitude  base location's latitude
-	 * @param longitude base location's longitude
-	 * @pre <code>!existsId && !existsLocation</code>
+	 * @param baseID    - base's unique id
+	 * @param latitude  - base location's latitude
+	 * @param longitude - base location's longitude
+	 * @pre <code>!existsBase(baseID) && !existsLocation(l)</code>
 	 */
-	void addBase(String id, int latitude, int longitude);
+	void addBase(String baseID, int latitude, int longitude);
 
 	/**
 	 * Checks if a base's id is valid for creation
 	 * 
-	 * @param id base's unique id
+	 * @param baseID - base's unique id
 	 * @return <code>true</code> if there isn't a base already with same id,
 	 *         <code>false</code> otherwise
 	 */
-	boolean isBaseIdValid(String id);
+	boolean isBaseIdValid(String baseID);
 
 	/**
 	 * Checks if a base exists with given id
 	 * 
-	 * @param id - id to check
+	 * @param baseID - baseID to check
 	 * @return <code>true</code> if a base exists with given id, <code>false</code>
 	 *         otherwise
 	 */
-	boolean existsBase(String id);
+	boolean existsBase(String baseID);
 
 	/**
 	 * Checks if a base's coordinates is valid for creation
@@ -71,29 +71,31 @@ public interface Manager {
 	 * 
 	 * @param baseID - baseID of base to return
 	 * @return Base object with matching ID
+	 * @pre <code>existsBase(baseID)</code>
 	 */
 	Base getBase(String baseID);
 
 	/**
 	 * Checks if there is already a drone with given id
 	 * 
-	 * @param id id to be checked for existance
+	 * @param droneID - id to be checked for existance
 	 * @return <code>true</code> if a drone exists with given id, <code>false</code>
 	 *         otherwise
 	 */
-	boolean existsDrone(String id);
+	boolean existsDrone(String droneID);
 
 	/**
 	 * Adds a drone, depending on its kind, to the given base hangar and to the
 	 * universe drone collection
 	 * 
 	 * @param id       - drone id
-	 * @param base     - base to add drone to
+	 * @param baseID   - base to add drone to
 	 * @param kind     - kind of drone
 	 * @param range    - drone range
 	 * @param capacity - drone capacity
+	 * @pre <code>existsBase(baseID)</code>
 	 */
-	void addDrone(String id, String base, String kind, int range, int capacity);
+	void addDrone(String id, String baseID, String kind, int range, int capacity);
 
 	/**
 	 * Checks if there are no drones in universe
@@ -106,20 +108,22 @@ public interface Manager {
 	/**
 	 * Checks if there are no drones in the service bay of the base given
 	 * 
-	 * @param base - unique base id
+	 * @param baseID - unique base id
 	 * @return <code>true</code> if there are no drones in the service bay of a
 	 *         base, <code>false</code> otherwise
+	 * @pre <code>existsBase(baseID)</code>
 	 */
-	boolean noDronesInServiceBay(String base);
+	boolean noDronesInServiceBay(String baseID);
 
 	/**
 	 * Checks if there are no drones in the hangar of the base given
 	 * 
-	 * @param base - unique base id
+	 * @param baseID - unique base id
 	 * @return <code>true</code> if there are no drones in the hangar of a base,
 	 *         <code>false</code> otherwise
+	 * @pre <code>existsBase(baseID)</code>
 	 */
-	boolean noDronesInHangar(String base);
+	boolean noDronesInHangar(String baseID);
 
 	/**
 	 * Moves the given drone from the hangar to the service bay
@@ -135,6 +139,7 @@ public interface Manager {
 	 * @param swarmID          - swarm's unique ID
 	 * @param baseID           - base to add swarm to
 	 * @param formingDronesIDS - drone IDS of drones belonging to swarm
+	 * @pre <code>existsBase(baseID)</code>
 	 */
 	void addSwarm(String swarmID, String baseID, String[] formingDronesIDS);
 
@@ -150,6 +155,7 @@ public interface Manager {
 	 * 
 	 * @param swarmID - swarm ID of swarm we want to know the drones of
 	 * @return a drone iterator for the drones forming the swarm
+	 * @pre <code>existsDrone(swarmID)</code>
 	 */
 	Iterator swarmComponentsIterator(String swarmID);
 
@@ -158,15 +164,17 @@ public interface Manager {
 	 * 
 	 * @param swarmID - swarm ID of respective swarm
 	 * @return swarm with given ID
+	 * @pre <code>existsDrone(swarmID)</code>
 	 */
 	Swarm getSwarm(String swarmID);
 
 	/**
-	 * Moves one given drone to a given base
+	 * Moves a given drone to a given base
 	 * 
 	 * @param droneID         - droneID of drone to be moved
 	 * @param originBase      - base where drone with droneID currently is
 	 * @param destinationBase - base where the drone with droneID will go
+	 * @pre <code>existsDrone(droneID) && existsBase(originBase) && existsBase(destinationBase)</code>
 	 */
 	void changeBase(String droneID, String originBase, String destinationBase);
 
@@ -196,6 +204,7 @@ public interface Manager {
 	 * @param dimension - order dimension
 	 * @param latitude  - destination latitude
 	 * @param longitude - destination longitude
+	 * @pre <code>existsBase(baseID) && dimension > 0</code>
 	 */
 	void addOrder(String baseID, String orderID, int dimension, int latitude, int longitude);
 
@@ -206,9 +215,9 @@ public interface Manager {
 	 *                 the swarm
 	 * @param baseID   - base in which the swarm will be created
 	 * @param swarmID  - swarm's unique identifier
-	 * @return an <code>int</code> from 0 to 4 indicating the error or success of
-	 *         the verifications in index position 0, and in index position 1, the
-	 *         droneIDS index position of the drone causing the error
+	 * @return and int array with 2 positions: The first position with the error
+	 *         code and the second position with the index position of the array
+	 *         <code>droneIDS</code> of the droneID causing the error.
 	 */
 	int[] swarmCheck(String baseID, String swarmID, String[] droneIDS);
 
