@@ -22,28 +22,32 @@ public class FlightCollectionClass implements FlightCollection {
 		counter = 0;
 	}
 
-	@Override
 	public void addFlight(Flight flight) {
 		if (isFull())
 			resize();
 		flights[counter++] = flight;
 	}
 
-	@Override
 	public Flight getFlight(String droneID) {
 		return flights[searchIndexId(droneID)];
 	}
 
-	@Override
 	public Iterator iterator() {
 		return new IteratorFlightsClass(flights, counter);
 	}
 
-	private int searchIndexId(String id) {
+	/**
+	 * Search index by ID of flights
+	 * 
+	 * @param droneID - flight of drone's id to be searched for
+	 * @return index position of flight with given droneID, unless there is no drone
+	 *         with that ID currently flying, in that case, it returns -1
+	 */
+	private int searchIndexId(String droneID) {
 		int i = 0;
 		int res = -1;
 		while ((i < counter) && (res == -1)) {
-			if (flights[i].drone().droneID().equals(id))
+			if (flights[i].drone().droneID().equals(droneID))
 				res = i;
 			i++;
 		}
