@@ -7,7 +7,7 @@ import bases.*;
 import drones.*;
 
 /**
- * @author tbmsilva
+ * @author tbmsilva & m.lami
  *
  */
 public class DeliveryClass extends AbstractFlight implements Delivery {

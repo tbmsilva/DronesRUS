@@ -6,7 +6,7 @@ package iterators;
 import flight.*;
 
 /**
- * @author tbmsilva
+ * @author tbmsilva & m.lami
  *
  */
 public class IteratorFlightsClass extends AbstractIterator implements IteratorFlights {

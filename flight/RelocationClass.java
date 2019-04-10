@@ -7,7 +7,7 @@ import bases.Location;
 import drones.Drone;
 
 /**
- * @author tbmsilva
+ * @author tbmsilva & m.lami
  */
 
 public class RelocationClass extends AbstractFlight implements Relocation {
