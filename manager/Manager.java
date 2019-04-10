@@ -162,6 +162,15 @@ public interface Manager {
 	Swarm getSwarm(String swarmID);
 
 	/**
+	 * Moves one given drone to a given base
+	 * 
+	 * @param droneID         - droneID of drone to be moved
+	 * @param originBase      - base where drone with droneID currently is
+	 * @param destinationBase - base where the drone with droneID will go
+	 */
+	void changeBase(String droneID, String originBase, String destinationBase);
+
+	/**
 	 * Checks if there is an order with given ID
 	 * 
 	 * @param orderID - order's ID to be checked for existance
