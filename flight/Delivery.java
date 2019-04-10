@@ -9,4 +9,6 @@ package flight;
  */
 public interface Delivery extends Flight {
 	
+	int distance();
+	
 }

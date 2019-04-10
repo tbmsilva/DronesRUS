@@ -8,5 +8,7 @@ package flight;
  *
  */
 public interface Relocation extends Flight {
+	
+	int distance();
 
 }
