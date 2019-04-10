@@ -117,7 +117,13 @@ public class ManagerClass implements Manager {
 		int capacity = 0;
 		for (int i = 0; i < formingDronesIDS.length; i++) {
 			Drone d = drones.getDrone(formingDronesIDS[i]);
-			formingDrones.addDrone(d);
+			if (d instanceof Swarm) {
+				DroneCollection temp = ((Swarm) d).getFormingDrones();
+				Iterator it = temp.iterator();
+				while (it.hasNext())
+					formingDrones.addDrone((Drone) it.next());
+			} else
+				formingDrones.addDrone(d);
 			drones.removeDrone(formingDronesIDS[i]);
 			b.removeDroneHangar(formingDronesIDS[i]);
 			if (d.range() < range)
