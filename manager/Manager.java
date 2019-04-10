@@ -88,14 +88,14 @@ public interface Manager {
 	 * Adds a drone, depending on its kind, to the given base hangar and to the
 	 * universe drone collection
 	 * 
-	 * @param id       - drone id
+	 * @param droneID  - drone id
 	 * @param baseID   - base to add drone to
 	 * @param kind     - kind of drone
 	 * @param range    - drone range
 	 * @param capacity - drone capacity
 	 * @pre <code>existsBase(baseID)</code>
 	 */
-	void addDrone(String id, String baseID, String kind, int range, int capacity);
+	void addDrone(String droneID, String baseID, String kind, int range, int capacity);
 
 	/**
 	 * Checks if there are no drones in universe
