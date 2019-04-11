@@ -292,7 +292,7 @@ public class Main {
 				System.out.println("Cannot add hermit drone " + formingDronesIDS[errorArray[1]] + "!");
 				break;
 			case ERROR_DRONE_UNAVAILABLE:
-				System.out.println("Drone " + formingDronesIDS[errorArray[1]] + " is not available at this base!");
+				System.out.println("Drone " + formingDronesIDS[errorArray[1]] + " is not available in this base!");
 				break;
 			case ERROR_SWARM_ID:
 				System.out.println("Swarm " + swarmID + " already exists!");
@@ -356,16 +356,16 @@ public class Main {
 				System.out.println("Target base " + targetBase + " does not exist!");
 			} else {
 				if (!mn.getBase(originBase).isInHangar(droneId)) {
-					System.out.println(droneId + " is not at " + originBase);
+					System.out.println(droneId + " is not at " + originBase + "!");
 				} else {
 					Location l1 = mn.getBase(originBase).location();
 					Location l2 = mn.getBase(targetBase).location();
 					int d = mn.distance(l1, l2);
 					if (!mn.hasRange(droneId, d)) {
-						System.out.println("Drone " + droneId + " cannot reach " + targetBase);
+						System.out.println("Drone " + droneId + " cannot reach " + targetBase + "!");
 					} else {
 						mn.relocation(droneId, originBase, targetBase);
-						System.out.println(droneId + " flying from " + originBase + " to " + targetBase);
+						System.out.println(droneId + " flying from " + originBase + " to " + targetBase + ".");
 					}
 				}
 			}
@@ -461,7 +461,7 @@ public class Main {
 				Order o = mn.getOrder(orderID);
 				int distance = (mn.distance(b.location(), o.destination())) * 2;
 				if (!mn.hasRange(droneID, distance))
-					System.out.println(orderID + " is too far from " + droneID + "!");
+					System.out.println(orderID + " is too far for " + droneID + "!");
 				else if (b.getDrone(droneID).capacity() < o.dimension())
 					System.out.println(orderID + " is too heavy for " + droneID + "!");
 				else {

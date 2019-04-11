@@ -271,6 +271,7 @@ public class ManagerClass implements Manager {
 	 */
 	private void tickFlight() {
 		Iterator it = flights.iterator();
+		FlightCollection temp = new FlightCollectionClass();
 		while (it.hasNext()) {
 			Flight f = (Flight) it.next();
 			if (f instanceof Relocation) {
@@ -279,15 +280,15 @@ public class ManagerClass implements Manager {
 					int aux = f.distanceCovered() - f.distance();
 					f.setRange(f.drone().range() + aux);
 					((Relocation) f).destination().addDrone(f.drone());
-					flights.removeFlight(f.drone().droneID());
+					temp.addFlight(f);
 				}
 			}
 			else {
 				boolean delivered = false;
 				f.increaseDistanceTraveled();
 				if(f.distanceCovered() >= f.distance()/2 && !delivered) {
-					Order temp = ((Delivery) f).getOrder();
-					OrderDelivered o = new OrderDeliveredClass(temp.id(), temp.dimension(), temp.destination());
+					Order oTemp = ((Delivery) f).getOrder();
+					OrderDelivered o = new OrderDeliveredClass(oTemp.id(), oTemp.dimension(), oTemp.destination());
 					o.setTimeStamp(tick);
 					o.setOrigin(f.origin());
 					flights.deliverOrder(o);
@@ -300,6 +301,11 @@ public class ManagerClass implements Manager {
 					flights.removeFlight(f.drone().droneID());
 				}
 			}
+		}
+		Iterator itTemp = temp.iterator();
+		while(itTemp.hasNext()) {
+			Flight tempF = (Flight) itTemp.next();
+			flights.removeFlight(tempF.drone().droneID());
 		}
 	}
 
