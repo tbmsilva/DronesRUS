@@ -133,9 +133,9 @@ public class Main {
 		case DELIVERED:
 			processDelivered(mn, in);
 			break;
-		case IN_TRANSIT:
-			processInTransit(mn, in);
-			break;
+//		case IN_TRANSIT:
+//			processInTransit(mn, in);
+//			break;
 		case TIC_TAC:
 			processTicTac(mn, in);
 			break;
