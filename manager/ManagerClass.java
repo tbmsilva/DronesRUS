@@ -227,13 +227,8 @@ public class ManagerClass implements Manager {
 		Base b1 = getBase(origin);
 		Base b2 = getBase(target);
 		Drone d = drones.getDrone(droneId);
-<<<<<<< HEAD
-		//Flight f = new RelocationClass(d, b1.location(), b2.location());
-		//flights.addFlight(f);
-=======
 		Flight f = new RelocationClass(d, b1, b2);
 		flights.addFlight(f);
->>>>>>> 6eea41c8430a9d54a05aabe2186d5982c1fd37a9
 		b1.removeDroneHangar(droneId);	
 	}
 
