@@ -4,6 +4,7 @@
 package flight;
 
 import bases.*;
+import orders.*;
 
 /**
  * @author tbmsilva
@@ -12,5 +13,7 @@ import bases.*;
 public interface Delivery extends Flight {
 	
 	int distance();
+	
+	Order getOrder();
 
 }

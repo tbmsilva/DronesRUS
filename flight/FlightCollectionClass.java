@@ -41,7 +41,15 @@ public class FlightCollectionClass implements FlightCollection {
 	public boolean isEmpty() {
 		return counter == 0;
 	}
+	
+	public Iterator orderIterator() {
+		return deliveredOrders.orderIterator();
+	}
 
+	public boolean noOrderDelivered() {
+		return deliveredOrders.isEmpty();
+	}
+	
 	/**
 	 * Search index by ID of flights
 	 * 

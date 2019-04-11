@@ -188,6 +188,10 @@ public class ManagerClass implements Manager {
 	public boolean noOrders() {
 		return orders.isEmpty();
 	}
+	
+	public boolean noOrderDelivered() {
+		return flights.noOrderDelivered();
+	}
 
 	public void addOrder(String baseID, String orderID, int dimension, int latitude, int longitude) {
 		orders.addOrder(orderID, dimension, latitude, longitude);
@@ -235,9 +239,17 @@ public class ManagerClass implements Manager {
 	public Iterator iteratorFlights() {
 		return flights.iterator();
 	}
+	
+	public Iterator iteratorOrderDeliveres () {
+		return flights.orderIterator();
+	}
 
 	public boolean noFlights() {
 		return flights.isEmpty();
+	}
+	
+	public Iterator iteratorOrderDelivered() {
+		return flights.orderIterator();		
 	}
 
 	public Order getOrder(String orderID) {
@@ -246,9 +258,10 @@ public class ManagerClass implements Manager {
 
 	public void startDelivery(Base base, String droneID, Order order) {
 		Drone d = base.getDrone(droneID);
-		Flight f = new DeliveryClass(d, base, order.destination());
+		Flight f = new DeliveryClass(d, base, order.destination(), order);
 		flights.addFlight(f);
 		base.removeDroneHangar(droneID);
+		base.removeOrder(order.id());
 	}
 
 	/**

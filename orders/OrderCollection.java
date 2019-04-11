@@ -46,4 +46,12 @@ public interface OrderCollection {
 	 *         otherwise.
 	 */
 	boolean isEmpty();
+
+	/**
+	 * Removes an order by giving its ID
+	 * 
+	 * @param orderID - order's ID
+	 * @pre <code>existsOrder(orderID)</code>
+	 */
+	void removeOrder(String orderID);
 }

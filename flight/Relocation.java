@@ -13,7 +13,6 @@ public interface Relocation extends Flight {
 	
 	int distance();
 	
-	
 	Base destination();
 
 }

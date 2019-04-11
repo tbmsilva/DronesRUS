@@ -194,7 +194,15 @@ public interface Manager {
 	 * @return <code>true</code> if there are no orders, <code>false</code>
 	 *         otherwise
 	 */
-	public boolean noOrders();
+	boolean noOrders();
+
+	/**
+	 * Checks if no orders were delivered
+	 * 
+	 * @return <code>true</code> if no orders were delivered, <code>false</code>
+	 *         otherwise
+	 */
+	boolean noOrderDelivered();
 
 	/**
 	 * Creates and adds an order to the universal order collection and to the
@@ -271,7 +279,14 @@ public interface Manager {
 	 * @return <code>true</code> if there are no flights, <code>false</code>
 	 *         otherwise
 	 */
-	public boolean noFlights();
+	boolean noFlights();
+
+	/**
+	 * Returns a orders delivered iterator
+	 * 
+	 * @return a orders delivered iterator
+	 */
+	Iterator iteratorOrderDelivered();
 
 	/**
 	 * Returns an order with given orderID
@@ -279,7 +294,7 @@ public interface Manager {
 	 * @param orderID - orderID of wanted order
 	 * @return an order with given orderID
 	 */
-	public Order getOrder(String orderID);
+	Order getOrder(String orderID);
 
 	/**
 	 * Starts a delivery for an order
@@ -289,6 +304,6 @@ public interface Manager {
 	 * @param droneID - droneID of drone delivering the order
 	 * @param order   - order to be delivered
 	 */
-	public void startDelivery(Base base, String droneID, Order order);
+	void startDelivery(Base base, String droneID, Order order);
 
 }

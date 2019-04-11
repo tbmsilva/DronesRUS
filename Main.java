@@ -16,12 +16,14 @@ public class Main {
 	private static final int MINIMUM_RANGE = 10;
 	private static final String HERMIT = "hermit";
 	private static final String SOCIABLE = "sociable";
+	
 	// Swarm Error Codes
 	private static final int ERROR_SAME_DRONE = 0;
 	private static final int ERROR_HERMIT_DRONE = 1;
 	private static final int ERROR_DRONE_UNAVAILABLE = 2;
 	private static final int ERROR_SWARM_ID = 3;
 	private static final int SWARM_CHECK_OK = 4;
+	
 	// Commands
 	private static final String EXIT = "exit";
 	private static final String BASE = "base";
@@ -74,6 +76,7 @@ public class Main {
 	private static final String INVALID_INITIAL_DRONES = "Swarm must have at least two drones!";
 	private static final String NO_DRONES_SENT_TO_SERVICE = "No drones were sent to the service station!";
 	private static final String NO_FLYING_DRONES = "No drones are flyng!";
+	private static final String NO_ORDERS_DELIVERED = "No orders delivered so far!";
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
@@ -471,7 +474,16 @@ public class Main {
 	}
 
 	private static void processDelivered(Manager mn, Scanner in) {
-
+		if (mn.noOrders() || mn.noOrderDelivered())
+			System.out.println(NO_ORDERS_DELIVERED + "!");
+		else {
+			Iterator itOD = mn.iteratorOrderDelivered();
+			while (itOD.hasNext()) {
+				Order f = (Order) itOD.next();
+				System.out.println();
+				
+			}
+		}
 	}
 
 	private static void processTicTac(Manager mn, Scanner in) {

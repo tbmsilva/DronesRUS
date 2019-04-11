@@ -118,5 +118,13 @@ public interface Base {
 	 * @return a drone with given droneID
 	 */
 	Drone getDrone(String droneID);
+	
+	/**
+	 * Removes an order by giving its ID
+	 * 
+	 * @param orderID - order's ID
+	 * @pre <code>existsOrder(orderID)</code>
+	 */
+	void removeOrder(String orderID);
 
 }

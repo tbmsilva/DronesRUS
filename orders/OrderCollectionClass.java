@@ -45,6 +45,10 @@ public class OrderCollectionClass implements OrderCollection {
 	public boolean isEmpty() {
 		return counter == 0;
 	}
+	
+	public void removeOrder(String orderID) {
+		removeAt(searchIndex(orderID));
+	}
 
 	/**
 	 * Doubles the orders array size
@@ -81,5 +85,18 @@ public class OrderCollectionClass implements OrderCollection {
 			i++;
 		}
 		return res;
+	}
+	
+	/**
+	 * Removes the order in the given index
+	 * 
+	 * @param index - index of order to be removed
+	 * @pre <code>index >= 0 && index <= counter </code>
+	 */
+	private void removeAt(int index) {
+		for (int i = index; i < counter; i++) {
+			orders[i] = orders[i + 1];
+		}
+		counter--;
 	}
 }
