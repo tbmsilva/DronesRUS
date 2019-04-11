@@ -73,7 +73,7 @@ public class Main {
 	private static final String ORDERS_IN = "Orders in ";
 	private static final String INVALID_INITIAL_DRONES = "Swarm must have at least two drones!";
 	private static final String NO_DRONES_SENT_TO_SERVICE = "No drones were sent to the service station!";
-	private static final String NO_FLYING_DRONES = "No drones were sent to the service station!";
+	private static final String NO_FLYING_DRONES = "No drones are flyng!";
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
@@ -442,12 +442,9 @@ public class Main {
 			while (itF.hasNext()) {
 				Flight f = (Flight) itF.next();
 				if (f instanceof Relocation) {
-					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + f.origin().baseID() + " "
+					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + ((Relocation) f).destination().baseID() + " "
 							+ f.distanceCovered() + " " + f.distance() + " " + " relocation!");
 				} else {
-
-					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + " " + f.distanceCovered()
-							+ " " + f.distance() + " " + " delivery!");
 					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + f.origin().baseID() + " "
 							+ f.distanceCovered() + " " + f.distance() + " " + " delivery!");
 				}

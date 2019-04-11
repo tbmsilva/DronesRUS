@@ -3,6 +3,8 @@
  */
 package flight;
 
+import bases.Base;
+
 /**
  * @author tbmsilva
  *
@@ -10,5 +12,8 @@ package flight;
 public interface Relocation extends Flight {
 	
 	int distance();
+	
+	
+	Base destination();
 
 }

@@ -25,5 +25,4 @@ public class DeliveryClass extends AbstractFlight implements Delivery {
 	public int distance() {
 		return origin.location().calculateDistance(destination) * BOTH_WAYS;
 	}
-	
 }
