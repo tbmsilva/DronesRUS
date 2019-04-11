@@ -127,20 +127,6 @@ public class Main {
 		case ALL_ORDERS:
 			processAllOrders(mn, in);
 			break;
-<<<<<<< HEAD
-		/*
-		 * case DELIVERY: processPessoas(mn, in); break; case DELIVERED:
-		 * processPessoas(mn, in); break;
-		 */
-
-		case IN_TRANSIT:
-			processInTransit(mn, in);
-			break;
-		/*
-		 * case TIC_TAC: processPessoas(mn, in); break;
-		 */
-
-=======
 		case DELIVERY:
 			processDelivery(mn, in);
 			break;
@@ -153,7 +139,6 @@ public class Main {
 		case TIC_TAC:
 			processTicTac(mn, in);
 			break;
->>>>>>> 55635bcb4db2b6e690c4d8d1927bfaf768debe5c
 		case HELP:
 			processHelp();
 			break;
@@ -437,7 +422,6 @@ public class Main {
 		}
 	}
 
-<<<<<<< HEAD
 	private static void processInTransit(Manager mn, Scanner in) {
 		if (mn.noFlights()) {
 			System.out.println(NO_FLYING_DRONES);
@@ -449,13 +433,13 @@ public class Main {
 					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + f.origin().baseID() + " "
 							+ f.distanceCovered() + " " + f.distance() + " " + " relocation!");
 				} else {
-					
-					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " +  " "
+					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + f.origin().baseID() +  " "
 							+ f.distanceCovered() + " " + f.distance() + " " + " delivery!");
 				}
 			}
 		}
-=======
+	}
+
 	private static void processDelivery(Manager mn, Scanner in) {
 
 	}
@@ -465,9 +449,9 @@ public class Main {
 	}
 
 	private static void processTicTac(Manager mn, Scanner in) {
-
->>>>>>> 55635bcb4db2b6e690c4d8d1927bfaf768debe5c
+		
 	}
+	
 
 	private static void processExit() {
 		System.out.println(EXIT_MESSAGE);
