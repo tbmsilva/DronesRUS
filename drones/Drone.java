@@ -34,13 +34,19 @@ public interface Drone {
 	String info();
 	
 	/**
-	 * Adds 10 units of range
+	 * Sets range to max
 	 */
-	//void addRange();
+	void maxRange();
 	
 	/**
 	 * Removes 10 units of range
 	 */
-	//void removeRange();
+	void removeRange();
+	
+	/**
+	 * Sets the drone's range to the given range
+	 * @param newRange - drone's new range
+	 */
+	void setRange(int newRange);
 	
 }

@@ -9,41 +9,45 @@ package drones;
  */
 public abstract class AbstractDrone implements Drone {
 
-	private String droneID, info;
-	private int capacity, range;
+	private String droneID;
+	private int capacity, currentRange, maxRange;
+
+	private static final int RANGE_PER_TICK = 10;
 
 	public AbstractDrone(String droneID, int capacity, int range) {
 		this.droneID = droneID;
 		this.capacity = capacity;
-		this.range = range;
-		info = droneID + " " + capacity + " " + range;
+		this.maxRange = range;
+		currentRange = range;
+		maxRange = range;
 	}
 
 	public String droneID() {
 		return droneID;
 	}
 
-
 	public int capacity() {
 		return capacity;
 	}
 
 	public int range() {
-		return range;
+		return currentRange;
 	}
-	
+
 	public String info() {
-		return info;
+		return droneID + " " + capacity + " " + currentRange;
 	}
 
-	/*public int addRange() {
-		return range + 10;
+	public void maxRange() {
+		currentRange = maxRange;
 	}
 
-	public int removeRange() {
-		return range -10;
+	public void removeRange() {
+		currentRange -= RANGE_PER_TICK;
 	}
-	*/
-	
+
+	public void setRange(int newRange) {
+		currentRange = newRange;
+	}
 
 }

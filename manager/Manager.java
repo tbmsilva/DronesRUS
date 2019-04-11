@@ -170,16 +170,6 @@ public interface Manager {
 	Swarm getSwarm(String swarmID);
 
 	/**
-	 * Moves a given drone to a given base
-	 * 
-	 * @param droneID         - droneID of drone to be moved
-	 * @param originBase      - base where drone with droneID currently is
-	 * @param destinationBase - base where the drone with droneID will go
-	 * @pre <code>existsDrone(droneID) && existsBase(originBase) && existsBase(destinationBase)</code>
-	 */
-	void changeBase(String droneID, String originBase, String destinationBase);
-
-	/**
 	 * Checks if there is an order with given ID
 	 * 
 	 * @param orderID - order's ID to be checked for existance
@@ -305,5 +295,12 @@ public interface Manager {
 	 * @param order   - order to be delivered
 	 */
 	void startDelivery(Base base, String droneID, Order order);
+
+	/**
+	 * Advances simulation tick
+	 * 
+	 * @param tickAdvance - how many ticks to advance
+	 */
+	void advanceTick(int tickAdvance);
 
 }

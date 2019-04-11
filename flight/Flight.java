@@ -35,10 +35,8 @@ public interface Flight {
 
 	/**
 	 * Calculates distance traveled at point of given tick
-	 * 
-	 * @param currentTick - tick of simulation
 	 */
-	void distanceTraveled(int tick);
+	void increaseDistanceTraveled();
 
 	/**
 	 * Returns distance covered in flight
@@ -46,5 +44,12 @@ public interface Flight {
 	 * @return distance covered in flight
 	 */
 	int distanceCovered();
+
+	/**
+	 * Sets the drone's range to the given range
+	 * 
+	 * @param newRange - drone's new range
+	 */
+	void setRange(int newRange);
 
 }

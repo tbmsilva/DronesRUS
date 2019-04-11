@@ -31,7 +31,7 @@ public class ManagerClass implements Manager {
 	private OrderCollection orders;
 	private FlightCollection flights;
 
-	// Current simulation tick
+	// Current tick
 	private int tick;
 
 	public ManagerClass() {
@@ -188,14 +188,16 @@ public class ManagerClass implements Manager {
 	public boolean noOrders() {
 		return orders.isEmpty();
 	}
-	
+
 	public boolean noOrderDelivered() {
 		return flights.noOrderDelivered();
 	}
 
 	public void addOrder(String baseID, String orderID, int dimension, int latitude, int longitude) {
-		orders.addOrder(orderID, dimension, latitude, longitude);
-		bases.getBase(baseID).addOrder(orderID, dimension, latitude, longitude);
+		Location l = new LocationClass(latitude, longitude);
+		Order order = new OrderClass(orderID, dimension, l);
+		orders.addOrder(order);
+		bases.getBase(baseID).addOrder(order);
 	}
 
 	public void disband(String swarmID, Base base) {
@@ -209,14 +211,6 @@ public class ManagerClass implements Manager {
 		}
 		base.removeDroneHangar(swarmID);
 		drones.removeDrone(swarmID);
-	}
-
-	public void changeBase(String droneID, String originBase, String destinationBase) {
-		Base b1 = getBase(originBase);
-		Base b2 = getBase(destinationBase);
-		Drone drone = drones.getDrone(droneID);
-		b1.removeDroneHangar(droneID);
-		b2.addDrone(drone);
 	}
 
 	public int distance(Location origin, Location target) {
@@ -239,17 +233,17 @@ public class ManagerClass implements Manager {
 	public Iterator iteratorFlights() {
 		return flights.iterator();
 	}
-	
-	public Iterator iteratorOrderDeliveres () {
+
+	public Iterator iteratorOrderDeliveres() {
 		return flights.orderIterator();
 	}
 
 	public boolean noFlights() {
 		return flights.isEmpty();
 	}
-	
+
 	public Iterator iteratorOrderDelivered() {
-		return flights.orderIterator();		
+		return flights.orderIterator();
 	}
 
 	public Order getOrder(String orderID) {
@@ -262,6 +256,62 @@ public class ManagerClass implements Manager {
 		flights.addFlight(f);
 		base.removeDroneHangar(droneID);
 		base.removeOrder(order.id());
+	}
+
+	public void advanceTick(int tickAdvance) {
+		for (int i = 1; i <= tickAdvance; i++) {
+			tick++;
+			tickService();
+			tickFlight();
+		}
+	}
+
+	/**
+	 * Auxiliary method to tick all flights
+	 */
+	private void tickFlight() {
+		Iterator it = flights.iterator();
+		while (it.hasNext()) {
+			Flight f = (Flight) it.next();
+			if (f instanceof Relocation) {
+				f.increaseDistanceTraveled();
+				if (f.distanceCovered() >= f.distance()) {
+					int aux = f.distanceCovered() - f.distance();
+					f.setRange(f.drone().range() + aux);
+					((Relocation) f).destination().addDrone(f.drone());
+					flights.removeFlight(f.drone().droneID());
+				}
+			}
+			else {
+				boolean delivered = false;
+				f.increaseDistanceTraveled();
+				if(f.distanceCovered() >= f.distance()/2 && !delivered) {
+					Order temp = ((Delivery) f).getOrder();
+					OrderDelivered o = new OrderDeliveredClass(temp.id(), temp.dimension(), temp.destination());
+					o.setTimeStamp(tick);
+					o.setOrigin(f.origin());
+					flights.deliverOrder(o);
+					delivered = true;
+				}
+				if(f.distanceCovered() >= f.distance() && delivered) {
+					int aux = f.distanceCovered() - f.distance();
+					f.setRange(f.drone().range() + aux);
+					f.origin().addDrone(f.drone());
+					flights.removeFlight(f.drone().droneID());
+				}
+			}
+		}
+	}
+
+	/**
+	 * Auxiliary method to tick the service from every base
+	 */
+	private void tickService() {
+		Iterator it = bases.iterator();
+		while (it.hasNext()) {
+			Base b = (Base) it.next();
+			b.tickService();
+		}
 	}
 
 	/**

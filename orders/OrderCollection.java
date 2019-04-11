@@ -5,14 +5,11 @@ import iterators.*;
 public interface OrderCollection {
 
 	/**
-	 * Adds an order to the order collection
+	 * Adds given order to order collection
 	 * 
-	 * @param id        - order id
-	 * @param dimension - order dimension
-	 * @param latitude  - order destination latitude
-	 * @param longitude - order destination longitude
+	 * @param order - order to be added
 	 */
-	void addOrder(String id, int dimension, int latitude, int longitude);
+	void addOrder(Order order);
 
 	/**
 	 * Returns an order iterator

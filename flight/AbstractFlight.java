@@ -34,11 +34,16 @@ public abstract class AbstractFlight implements Flight {
 		return origin;
 	}
 	
-	public void distanceTraveled(int tick) {
-		distanceTraveled += tick * DISTANCE_PER_TICK;
+	public void increaseDistanceTraveled() {
+		distanceTraveled += 10;
+		drone.removeRange();
 	}
 	
-	public int distanceCovered () {
+	public int distanceCovered() {
 		return distanceTraveled;
+	}
+	
+	public void setRange(int newRange) {
+		drone.setRange(newRange);
 	}
 }

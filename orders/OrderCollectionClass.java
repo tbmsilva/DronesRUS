@@ -23,11 +23,10 @@ public class OrderCollectionClass implements OrderCollection {
 		counter = 0;
 	}
 
-	public void addOrder(String id, int dimension, int latitude, int longitude) {
+	public void addOrder(Order order) {
 		if (isFull())
 			resize();
-		Location l = new LocationClass(latitude, longitude);
-		orders[counter++] = new OrderClass(id, dimension, l);
+		orders[counter++] = order;
 	}
 
 	public Iterator orderIterator() {

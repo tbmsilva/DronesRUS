@@ -75,7 +75,7 @@ public class Main {
 	private static final String ORDERS_IN = "Orders in ";
 	private static final String INVALID_INITIAL_DRONES = "Swarm must have at least two drones!";
 	private static final String NO_DRONES_SENT_TO_SERVICE = "No drones were sent to the service station!";
-	private static final String NO_FLYING_DRONES = "No drones are flyng!";
+	private static final String NO_FLYING_DRONES = "No drones are flying!";
 	private static final String NO_ORDERS_DELIVERED = "No orders delivered so far!";
 
 	public static void main(String[] args) {
@@ -436,10 +436,10 @@ public class Main {
 				Flight f = (Flight) itF.next();
 				if (f instanceof Relocation) {
 					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + ((Relocation) f).destination().baseID() + " "
-							+ f.distanceCovered() + " " + f.distance() + " " + " relocation!");
+							+ f.distanceCovered() + " " + f.distance() + " relocation!");
 				} else {
 					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + f.origin().baseID() + " "
-							+ f.distanceCovered() + " " + f.distance() + " " + " delivery!");
+							+ f.distanceCovered() + " " + f.distance() + " delivery!");
 				}
 			}
 		}
@@ -475,18 +475,20 @@ public class Main {
 
 	private static void processDelivered(Manager mn, Scanner in) {
 		if (mn.noOrders() || mn.noOrderDelivered())
-			System.out.println(NO_ORDERS_DELIVERED + "!");
+			System.out.println(NO_ORDERS_DELIVERED);
 		else {
 			Iterator itOD = mn.iteratorOrderDelivered();
 			while (itOD.hasNext()) {
-				Order f = (Order) itOD.next();
-				System.out.println();
-				
+				OrderDelivered oD = (OrderDelivered) itOD.next();
+				System.out.println(oD.timeStamp() + " " + oD.id() + " " + oD.origin().baseID() + ".");	
 			}
 		}
 	}
 
 	private static void processTicTac(Manager mn, Scanner in) {
+		int tickAdvance = in.nextInt();
+		in.nextLine();
+		mn.advanceTick(tickAdvance);
 	}
 
 	private static void processExit() {

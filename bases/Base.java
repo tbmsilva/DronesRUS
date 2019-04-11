@@ -5,6 +5,7 @@ package bases;
 
 import drones.*;
 import iterators.*;
+import orders.Order;
 
 /**
  * @author tbmsilva & m.lami
@@ -89,14 +90,11 @@ public interface Base {
 	Iterator droneIteratorServiceBay();
 
 	/**
-	 * Creates and adds an order to the order collection
+	 * Adds a given order to base
 	 * 
-	 * @param orderID   - unique orderID
-	 * @param dimension - order dimension
-	 * @param latitude  - order destination latitude
-	 * @param longitude - order destnation longitude
+	 * @param order - order to be added
 	 */
-	void addOrder(String orderID, int dimension, int latitude, int longitude);
+	void addOrder(Order order);
 
 	/**
 	 * Returns an order iterator for the base's order collection
@@ -111,14 +109,15 @@ public interface Base {
 	 * @param drone - drone to be moved
 	 */
 	void moveToServiceBay(Drone drone);
-	
+
 	/**
 	 * Returns a drone with given droneID
+	 * 
 	 * @param droneID - droneID of wanted drone
 	 * @return a drone with given droneID
 	 */
 	Drone getDrone(String droneID);
-	
+
 	/**
 	 * Removes an order by giving its ID
 	 * 
@@ -126,5 +125,10 @@ public interface Base {
 	 * @pre <code>existsOrder(orderID)</code>
 	 */
 	void removeOrder(String orderID);
+
+	/**
+	 * Ticks the service
+	 */
+	void tickService();
 
 }

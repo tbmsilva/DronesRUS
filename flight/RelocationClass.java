@@ -27,4 +27,8 @@ public class RelocationClass extends AbstractFlight implements Relocation {
 		return destination;
 	}
 	
+	public void tickFlight() {
+		
+	}
+	
 }

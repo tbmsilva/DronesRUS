@@ -21,6 +21,7 @@ public class FlightCollectionClass implements FlightCollection {
 
 	public FlightCollectionClass() {
 		flights = new Flight[FLIGHT_SIZE_START];
+		deliveredOrders = new OrderCollectionClass();
 		counter = 0;
 	}
 
@@ -37,11 +38,11 @@ public class FlightCollectionClass implements FlightCollection {
 	public Iterator iterator() {
 		return new IteratorFlightsClass(flights, counter);
 	}
-	
+
 	public boolean isEmpty() {
 		return counter == 0;
 	}
-	
+
 	public Iterator orderIterator() {
 		return deliveredOrders.orderIterator();
 	}
@@ -49,7 +50,15 @@ public class FlightCollectionClass implements FlightCollection {
 	public boolean noOrderDelivered() {
 		return deliveredOrders.isEmpty();
 	}
+
+	public void removeFlight(String droneID) {
+		removeAt(searchIndexId(droneID));
+	}
 	
+	public void deliverOrder(Order order) {
+		deliveredOrders.addOrder(order);
+	}
+
 	/**
 	 * Search index by ID of flights
 	 * 
@@ -78,7 +87,8 @@ public class FlightCollectionClass implements FlightCollection {
 	/**
 	 * Checks if flight array is full
 	 * 
-	 * @return <code>true</code> if flight array is full, <code>false</code> otherwise
+	 * @return <code>true</code> if flight array is full, <code>false</code>
+	 *         otherwise
 	 */
 	private void resize() {
 		Flight[] temp = new Flight[flights.length * GROWTH_FACTOR];
@@ -88,4 +98,16 @@ public class FlightCollectionClass implements FlightCollection {
 		flights = temp;
 	}
 
+	/**
+	 * Removes the flight in the given index
+	 * 
+	 * @param index - index of flight to be removed
+	 * @pre <code>index >= 0 && index <= counter </code>
+	 */
+	private void removeAt(int index) {
+		for (int i = index; i < counter; i++) {
+			flights[i] = flights[i + 1];
+		}
+		counter--;
+	}
 }
