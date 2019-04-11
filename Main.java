@@ -73,7 +73,7 @@ public class Main {
 	private static final String ORDERS_IN = "Orders in ";
 	private static final String INVALID_INITIAL_DRONES = "Swarm must have at least two drones!";
 	private static final String NO_DRONES_SENT_TO_SERVICE = "No drones were sent to the service station!";
-	private static final String NO_FLYING_DRONES = "No drones were sent to the service station!";
+	private static final String NO_FLYING_DRONES = "No drones are flyng!";
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
