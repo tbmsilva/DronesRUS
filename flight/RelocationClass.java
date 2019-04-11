@@ -3,8 +3,8 @@
  */
 package flight;
 
-import bases.Location;
-import drones.Drone;
+import bases.*;
+import drones.*;
 
 /**
  * @author tbmsilva & m.lami
@@ -12,12 +12,15 @@ import drones.Drone;
 
 public class RelocationClass extends AbstractFlight implements Relocation {
 
-	public RelocationClass(Drone drone, Location origin, Location destination) {
-		super(drone, origin, destination);
+	private Base destination;
+
+	public RelocationClass(Drone drone, Base origin, Base destination) {
+		super(drone, origin);
+		this.destination = destination;
 	}
 
 	public int distance() {
-		return origin.calculateDistance(destination);
+		return origin.location().calculateDistance(destination.location());
 	}
 
 }

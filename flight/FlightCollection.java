@@ -32,4 +32,10 @@ public interface FlightCollection {
 	 * @return a flight iterator
 	 */
 	Iterator iterator();
+
+	/**
+	 * Checks if there are no flights
+	 * @return <code>true</code> if there are no flights, <code>false</code> otherwise.
+	 */
+	boolean isEmpty();
 }

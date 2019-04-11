@@ -229,10 +229,17 @@ public class ManagerClass implements Manager {
 		Drone d = drones.getDrone(droneId);
 		Flight f = new RelocationClass(d, b1.location(), b2.location());
 		flights.addFlight(f);
-		b1.removeDroneHangar(droneId);
-		
+		b1.removeDroneHangar(droneId);	
 	}
 
+	public Iterator iteratorFlights() {
+		return flights.iterator();
+	}
+	
+	public boolean noFlights() {
+		return flights.isEmpty();
+	}
+	
 	/**
 	 * Creates and adds a hermit drone to a given base and to the universe drone
 	 * collection

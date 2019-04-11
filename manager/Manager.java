@@ -257,4 +257,20 @@ public interface Manager {
 	 */
 	void relocation(String droneID, String origin, String target);
 
+	/**
+	 * Returns a flight iterator
+	 * 
+	 * @return a flight iterator
+	 */
+	Iterator iteratorFlights();
+	
+	/**
+	 * Checks if there are no flights in flight collection
+	 * 
+	 * @return <code>true</code> if there are no flights, <code>false</code>
+	 *         otherwise
+	 */
+	public boolean noFlights();
+
+	
 }

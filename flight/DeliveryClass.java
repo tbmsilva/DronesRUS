@@ -11,16 +11,16 @@ import drones.*;
  *
  */
 public class DeliveryClass extends AbstractFlight implements Delivery {
-	
+
 	private static final int BOTH_WAYS = 2;
+	private Location destination;
 
-
-	public DeliveryClass(Drone drone, Location origin, Location destination) {
-		super(drone, origin, destination);
+	public DeliveryClass(Drone drone, Base origin, Location destination) {
+		super(drone, origin);
+		this.destination = destination;
 	}
 
 	public int distance() {
-		return origin.calculateDistance(destination) * BOTH_WAYS;
+		return origin.location().calculateDistance(destination) * BOTH_WAYS;
 	}
-
 }

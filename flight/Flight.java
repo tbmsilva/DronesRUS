@@ -7,7 +7,7 @@ import bases.*;
 import drones.*;
 
 /**
- * @author tbmsilva
+ * @author tbmsilva & m.lami
  *
  */
 public interface Flight {
@@ -31,21 +31,15 @@ public interface Flight {
 	 * 
 	 * @return Location of the point of origin
 	 */
-	Location origin();
-
+	Base origin();
+	
 	/**
-	 * Returns the location of the destination
-	 * 
-	 * @return Location of the destination
-	 */
-	Location destination();
-
-	/**
-	 * Returns distance traveled at point of given tick
+	 * Calculates distance traveled at point of given tick
 	 * 
 	 * @param currentTick - tick of simulation
-	 * @return distance traveled at point of given tick
 	 */
-	int distanceTraveled(int tick);
+	void distanceTraveled(int tick);
+	
+	int distanceCovered();
 
 }
