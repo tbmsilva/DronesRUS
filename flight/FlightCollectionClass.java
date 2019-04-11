@@ -35,6 +35,10 @@ public class FlightCollectionClass implements FlightCollection {
 	public Iterator iterator() {
 		return new IteratorFlightsClass(flights, counter);
 	}
+	
+	public boolean isEmpty() {
+		return counter == 0;
+	}
 
 	/**
 	 * Search index by ID of flights

@@ -4,6 +4,7 @@ import bases.*;
 import iterators.*;
 import manager.*;
 import drones.*;
+import flight.*;
 import orders.*;
 
 /**
@@ -72,6 +73,7 @@ public class Main {
 	private static final String ORDERS_IN = "Orders in ";
 	private static final String INVALID_INITIAL_DRONES = "Swarm must have at least two drones!";
 	private static final String NO_DRONES_SENT_TO_SERVICE = "No drones were sent to the service station!";
+	private static final String NO_FLYING_DRONES = "No drones were sent to the service station!";
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
@@ -84,6 +86,7 @@ public class Main {
 			System.out.print(PROMPT);
 		}
 		processExit();
+		in.close();
 	}
 
 	private static void executeOption(Manager mn, String option, Scanner in) {
@@ -124,11 +127,16 @@ public class Main {
 		case ALL_ORDERS:
 			processAllOrders(mn, in);
 			break;
-
 		/*
 		 * case DELIVERY: processPessoas(mn, in); break; case DELIVERED:
-		 * processPessoas(mn, in); break; case IN_TRANSIT: processPessoas(mn, in);
-		 * break; case TIC_TAC: processPessoas(mn, in); break;
+		 * processPessoas(mn, in); break;
+		 */
+
+		case IN_TRANSIT:
+			processInTransit(mn, in);
+			break;
+		/*
+		 * case TIC_TAC: processPessoas(mn, in); break;
 		 */
 
 		case HELP:
@@ -409,6 +417,25 @@ public class Main {
 				while (itO.hasNext()) {
 					Order o = (Order) itO.next();
 					System.out.println(o.info());
+				}
+			}
+		}
+	}
+
+	private static void processInTransit(Manager mn, Scanner in) {
+		if (mn.noFlights()) {
+			System.out.println(NO_FLYING_DRONES);
+		} else {
+			Iterator itF = mn.iteratorFlights();
+			while (itF.hasNext()) {
+				Flight f = (Flight) itF.next();
+				if (f instanceof Relocation) {
+					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + f.origin().baseID() + " "
+							+ f.distanceCovered() + " " + f.distance() + " " + " relocation!");
+				} else {
+					
+					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " +  " "
+							+ f.distanceCovered() + " " + f.distance() + " " + " delivery!");
 				}
 			}
 		}

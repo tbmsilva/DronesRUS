@@ -13,15 +13,14 @@ public abstract class AbstractFlight implements Flight {
 	
 	public static final int DISTANCE_PER_TICK = 10;
 
-	protected Location origin, destination;
+	protected Base origin;
 	private int distanceTraveled;
 	private Drone drone;
 	
 	
-	public AbstractFlight(Drone drone, Location origin, Location destination) {
+	public AbstractFlight(Drone drone, Base origin) {
 		this.drone = drone;
 		this.origin = origin;
-		this.destination = destination;
 		distanceTraveled = 0;
 	}
 	
@@ -31,15 +30,15 @@ public abstract class AbstractFlight implements Flight {
 
 	public abstract int distance();
 	
-	public Location origin() {
+	public Base origin() {
 		return origin;
 	}
 	
-	public Location destination() {
-		return destination;
+	public void distanceTraveled(int tick) {
+		distanceTraveled += tick * DISTANCE_PER_TICK;
 	}
 	
-	public int distanceTraveled(int tick) {
-		return distanceTraveled += tick * DISTANCE_PER_TICK;
+	public int distanceCovered () {
+		return distanceTraveled;
 	}
 }
