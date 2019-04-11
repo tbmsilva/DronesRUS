@@ -99,5 +99,4 @@ public class DroneCollectionClass implements DroneCollection {
 		}
 		counter--;
 	}
-
 }

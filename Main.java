@@ -124,13 +124,18 @@ public class Main {
 		case ALL_ORDERS:
 			processAllOrders(mn, in);
 			break;
-
-		/*
-		 * case DELIVERY: processPessoas(mn, in); break; case DELIVERED:
-		 * processPessoas(mn, in); break; case IN_TRANSIT: processPessoas(mn, in);
-		 * break; case TIC_TAC: processPessoas(mn, in); break;
-		 */
-
+		case DELIVERY:
+			processDelivery(mn, in);
+			break;
+		case DELIVERED:
+			processDelivered(mn, in);
+			break;
+		case IN_TRANSIT:
+			processInTransit(mn, in);
+			break;
+		case TIC_TAC:
+			processTicTac(mn, in);
+			break;
 		case HELP:
 			processHelp();
 			break;
@@ -412,6 +417,18 @@ public class Main {
 				}
 			}
 		}
+	}
+
+	private static void processDelivery(Manager mn, Scanner in) {
+
+	}
+
+	private static void processDelivered(Manager mn, Scanner in) {
+
+	}
+
+	private static void processTicTac(Manager mn, Scanner in) {
+
 	}
 
 	private static void processExit() {
