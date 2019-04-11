@@ -127,6 +127,7 @@ public class Main {
 		case ALL_ORDERS:
 			processAllOrders(mn, in);
 			break;
+<<<<<<< HEAD
 		/*
 		 * case DELIVERY: processPessoas(mn, in); break; case DELIVERED:
 		 * processPessoas(mn, in); break;
@@ -137,6 +138,8 @@ public class Main {
 		/*
 		 * case TIC_TAC: processPessoas(mn, in); break;
 		 */
+=======
+>>>>>>> 6eea41c8430a9d54a05aabe2186d5982c1fd37a9
 		case DELIVERY:
 			processDelivery(mn, in);
 			break;
@@ -443,13 +446,23 @@ public class Main {
 					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + f.origin().baseID() + " "
 							+ f.distanceCovered() + " " + f.distance() + " " + " relocation!");
 				} else {
+<<<<<<< HEAD
 
 					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + " " + f.distanceCovered()
 							+ " " + f.distance() + " " + " delivery!");
+=======
+					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + f.origin().baseID() +  " "
+							+ f.distanceCovered() + " " + f.distance() + " " + " delivery!");
+>>>>>>> 6eea41c8430a9d54a05aabe2186d5982c1fd37a9
 				}
 			}
 		}
 	}
+<<<<<<< HEAD
+=======
+
+	private static void processDelivery(Manager mn, Scanner in) {
+>>>>>>> 6eea41c8430a9d54a05aabe2186d5982c1fd37a9
 
 	private static void processDelivery(Manager mn, Scanner in) {
 		
@@ -460,8 +473,13 @@ public class Main {
 	}
 
 	private static void processTicTac(Manager mn, Scanner in) {
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> 6eea41c8430a9d54a05aabe2186d5982c1fd37a9
 	}
+	
 
 	private static void processExit() {
 		System.out.println(EXIT_MESSAGE);
