@@ -440,12 +440,9 @@ public class Main {
 			while (itF.hasNext()) {
 				Flight f = (Flight) itF.next();
 				if (f instanceof Relocation) {
-					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + f.origin().baseID() + " "
+					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + ((Relocation) f).destination().baseID() + " "
 							+ f.distanceCovered() + " " + f.distance() + " " + " relocation!");
 				} else {
-
-					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + " " + f.distanceCovered()
-							+ " " + f.distance() + " " + " delivery!");
 					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + f.origin().baseID() + " "
 							+ f.distanceCovered() + " " + f.distance() + " " + " delivery!");
 				}

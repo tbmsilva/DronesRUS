@@ -3,6 +3,8 @@
  */
 package flight;
 
+import bases.*;
+
 /**
  * @author tbmsilva
  *
@@ -10,5 +12,5 @@ package flight;
 public interface Delivery extends Flight {
 	
 	int distance();
-	
+
 }
