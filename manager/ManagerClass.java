@@ -152,16 +152,16 @@ public class ManagerClass implements Manager {
 			errorArray[1] = swarmSameID;
 			return errorArray;
 		} else {
-			int swarmIsHermit = swarmIsHermit(droneIDS);
-			if (swarmIsHermit != -1) {
-				errorArray[0] = ERROR_HERMIT_DRONE;
-				errorArray[1] = swarmIsHermit;
+			int swarmDroneUnavailable = swarmDroneUnavailable(droneIDS, baseID);
+			if (swarmDroneUnavailable != -1) {
+				errorArray[0] = ERROR_DRONE_UNAVAILABLE;
+				errorArray[1] = swarmDroneUnavailable;
 				return errorArray;
 			} else {
-				int swarmDroneUnavailable = swarmDroneUnavailable(droneIDS, baseID);
-				if (swarmDroneUnavailable != -1) {
-					errorArray[0] = ERROR_DRONE_UNAVAILABLE;
-					errorArray[1] = swarmDroneUnavailable;
+				int swarmIsHermit = swarmIsHermit(droneIDS);
+				if (swarmIsHermit != -1) {
+					errorArray[0] = ERROR_HERMIT_DRONE;
+					errorArray[1] = swarmIsHermit;
 					return errorArray;
 				} else {
 					if (drones.existsId(swarmID)) {
@@ -339,10 +339,10 @@ public class ManagerClass implements Manager {
 		int unavailable = -1;
 		Base b = getBase(baseID);
 		if (b.noDronesInHangar())
-			return unavailable;
+			return unavailable = 0;
 		else {
-			for (int i = 0; i < droneIDS.length - 1 && unavailable == -1; i++) {
-				if (!b.isInHangar(droneIDS[i]))
+			for (int i = 0; i < droneIDS.length && unavailable == -1; i++) {
+				if (!b.isInHangar(droneIDS[i]) || !existsDrone(droneIDS[i]))
 					unavailable = i;
 			}
 			return unavailable;
