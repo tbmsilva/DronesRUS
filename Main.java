@@ -95,7 +95,7 @@ public class Main {
 			processBase(mn, in);
 			break;
 		case LIST_BASES:
-			processListBases(mn, in);
+			processListBases(mn);
 			break;
 		case DRONE:
 			processDrone(mn, in);
@@ -113,7 +113,7 @@ public class Main {
 			processDisband(mn, in);
 			break;
 		case LIST_DRONES:
-			processListDrones(mn, in);
+			processListDrones(mn);
 			break;
 		case FLY_TO_BASE:
 			processFlyToBase(mn, in);
@@ -125,27 +125,17 @@ public class Main {
 			processOrders(mn, in);
 			break;
 		case ALL_ORDERS:
-			processAllOrders(mn, in);
+			processAllOrders(mn);
 			break;
-		/*
-		 * case DELIVERY: processPessoas(mn, in); break; case DELIVERED:
-		 * processPessoas(mn, in); break;
-		 */
-		case IN_TRANSIT:
-			processInTransit(mn, in);
-			break;
-		/*
-		 * case TIC_TAC: processPessoas(mn, in); break;
-		 */
 		case DELIVER:
 			processDeliver(mn, in);
 			break;
 		case DELIVERED:
 			processDelivered(mn, in);
 			break;
-//		case IN_TRANSIT:
-//			processInTransit(mn, in);
-//			break;
+		case IN_TRANSIT:
+			processInTransit(mn, in);
+			break;
 		case TIC_TAC:
 			processTicTac(mn, in);
 			break;
@@ -172,7 +162,7 @@ public class Main {
 			System.out.println(BASE_EXISTS);
 	}
 
-	private static void processListBases(Manager mn, Scanner in) {
+	private static void processListBases(Manager mn) {
 		if (mn.areThereBases()) {
 			Iterator itB = mn.iteratorBases();
 			while (itB.hasNext()) {
@@ -206,7 +196,7 @@ public class Main {
 				}
 			}
 		} else
-			System.out.println(PROMPT + NO_BASES);
+			System.out.println(NO_BASES);
 	}
 
 	private static void processDrone(Manager mn, Scanner in) {
@@ -342,7 +332,7 @@ public class Main {
 		}
 	}
 
-	private static void processListDrones(Manager mn, Scanner in) {
+	private static void processListDrones(Manager mn) {
 		Iterator dIt = mn.iteratorDrones();
 		if (!dIt.hasNext())
 			System.out.println(NO_DRONES);
@@ -414,7 +404,7 @@ public class Main {
 		}
 	}
 
-	private static void processAllOrders(Manager mn, Scanner in) {
+	private static void processAllOrders(Manager mn) {
 		if (mn.noOrders())
 			System.out.println(NO_PENDING_ORDERS + "!");
 		else {
