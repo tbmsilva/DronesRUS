@@ -112,11 +112,9 @@ public class Main {
 		case LIST_DRONES:
 			processListDrones(mn, in);
 			break;
-
 		case FLY_TO_BASE:
 			processFlyToBase(mn, in);
 			break;
-
 		case ADD_ORDERS:
 			processAddOrder(mn, in);
 			break;
