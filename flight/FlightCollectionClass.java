@@ -4,6 +4,7 @@
 package flight;
 
 import iterators.*;
+import orders.*;
 
 /**
  * @author tbmsilva & m.lami
@@ -15,6 +16,7 @@ public class FlightCollectionClass implements FlightCollection {
 	private static final int GROWTH_FACTOR = 2;
 
 	private Flight[] flights;
+	private OrderCollection deliveredOrders;
 	private int counter;
 
 	public FlightCollectionClass() {

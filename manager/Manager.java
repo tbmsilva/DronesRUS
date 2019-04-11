@@ -4,6 +4,7 @@
 package manager;
 
 import iterators.*;
+import orders.*;
 import bases.*;
 import drones.*;
 
@@ -230,13 +231,13 @@ public interface Manager {
 	void disband(String swarmID, Base base);
 
 	/**
-	 * Calculates distance between two bases
+	 * Calculates distance between two locations
 	 * 
-	 * @param origin - base from where the drone departs
-	 * @param target - base where the drone will land
-	 * @return distance value between the two bases
+	 * @param origin - location from where the drone departs
+	 * @param target - location where the drone will land
+	 * @return distance value between the two locations
 	 */
-	int distance(String origin, String target);
+	int distance(Location origin, Location target);
 
 	/**
 	 * Checks if the given drone has enough range to get to destination
@@ -263,7 +264,7 @@ public interface Manager {
 	 * @return a flight iterator
 	 */
 	Iterator iteratorFlights();
-	
+
 	/**
 	 * Checks if there are no flights in flight collection
 	 * 
@@ -272,5 +273,22 @@ public interface Manager {
 	 */
 	public boolean noFlights();
 
-	
+	/**
+	 * Returns an order with given orderID
+	 * 
+	 * @param orderID - orderID of wanted order
+	 * @return an order with given orderID
+	 */
+	public Order getOrder(String orderID);
+
+	/**
+	 * Starts a delivery for an order
+	 * 
+	 * @param base    - base which the drone departs from and where the order is
+	 *                pending
+	 * @param droneID - droneID of drone delivering the order
+	 * @param order   - order to be delivered
+	 */
+	public void startDelivery(Base base, String droneID, Order order);
+
 }

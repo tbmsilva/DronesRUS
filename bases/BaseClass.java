@@ -78,4 +78,8 @@ public class BaseClass implements Base {
 		removeDroneHangar(drone.droneID());
 		serviceBay.addDrone(drone);
 	}
+	
+	public Drone getDrone(String droneID) {
+		return hangar.getDrone(droneID);
+	}
 }

@@ -36,7 +36,7 @@ public class Main {
 	private static final String ADD_ORDERS = "addorder";
 	private static final String ORDERS = "orders";
 	private static final String ALL_ORDERS = "allorders";
-	private static final String DELIVERY = "delivery";
+	private static final String DELIVER = "deliver";
 	private static final String DELIVERED = "delivered";
 	private static final String IN_TRANSIT = "intransit";
 	private static final String TIC_TAC = "tictac";
@@ -137,8 +137,8 @@ public class Main {
 		/*
 		 * case TIC_TAC: processPessoas(mn, in); break;
 		 */
-		case DELIVERY:
-			processDelivery(mn, in);
+		case DELIVER:
+			processDeliver(mn, in);
 			break;
 		case DELIVERED:
 			processDelivered(mn, in);
@@ -365,7 +365,9 @@ public class Main {
 				if (!mn.getBase(originBase).isInHangar(droneId)) {
 					System.out.println(droneId + " is not at " + originBase);
 				} else {
-					int d = mn.distance(originBase, targetBase);
+					Location l1 = mn.getBase(originBase).location();
+					Location l2 = mn.getBase(targetBase).location();
+					int d = mn.distance(l1, l2);
 					if (!mn.hasRange(droneId, d)) {
 						System.out.println("Drone " + droneId + " cannot reach " + targetBase);
 					} else {
@@ -453,8 +455,32 @@ public class Main {
 		}
 	}
 
-	private static void processDelivery(Manager mn, Scanner in) {
+	private static void processDeliver(Manager mn, Scanner in) {
+		String baseID = in.nextLine().trim();
+		String droneID = in.nextLine().trim();
+		String orderID = in.nextLine().trim();
+		if (!mn.existsBase(baseID))
+			System.out.println("Base " + baseID + " does not exist!");
+		else {
+			Base b = mn.getBase(baseID);
+			if (!b.isInHangar(droneID))
+				System.out.println(droneID + " is not at " + baseID + "!");
+			else if (!mn.existsOrder(orderID))
+				System.out.println(orderID + " is not pending!");
+			else {
+				Order o = mn.getOrder(orderID);
+				int distance = (mn.distance(b.location(), o.destination())) * 2;
+				if (!mn.hasRange(droneID, distance))
+					System.out.println(orderID + " is too far from " + droneID + "!");
+				else if (b.getDrone(droneID).capacity() < o.dimension())
+					System.out.println(orderID + " is too heavy for " + droneID + "!");
+				else {
+					mn.startDelivery(b, droneID, o);
+					System.out.println(droneID + " will deliver " + orderID + ".");
+				}
+			}
 
+		}
 	}
 
 	private static void processDelivered(Manager mn, Scanner in) {

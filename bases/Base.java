@@ -112,6 +112,11 @@ public interface Base {
 	 */
 	void moveToServiceBay(Drone drone);
 	
-	
+	/**
+	 * Returns a drone with given droneID
+	 * @param droneID - droneID of wanted drone
+	 * @return a drone with given droneID
+	 */
+	Drone getDrone(String droneID);
 
 }

@@ -89,3 +89,4 @@ public interface BaseCollection {
 	 */
 	void moveDroneToServiceBay(Base base, Drone drone);
 }
+

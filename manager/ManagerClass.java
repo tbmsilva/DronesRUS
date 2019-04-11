@@ -215,31 +215,42 @@ public class ManagerClass implements Manager {
 		b2.addDrone(drone);
 	}
 
-	public int distance(String origin, String target) {
-		return getBase(origin).location().calculateDistance(getBase(target).location());
+	public int distance(Location origin, Location target) {
+		return origin.calculateDistance(target);
 	}
 
 	public boolean hasRange(String droneId, int distance) {
 		return drones.getDrone(droneId).range() >= distance;
 	}
-	
+
 	public void relocation(String droneId, String origin, String target) {
 		Base b1 = getBase(origin);
 		Base b2 = getBase(target);
 		Drone d = drones.getDrone(droneId);
 		Flight f = new RelocationClass(d, b1, b2);
 		flights.addFlight(f);
-		b1.removeDroneHangar(droneId);	
+		b1.removeDroneHangar(droneId);
 	}
 
 	public Iterator iteratorFlights() {
 		return flights.iterator();
 	}
-	
+
 	public boolean noFlights() {
 		return flights.isEmpty();
 	}
-	
+
+	public Order getOrder(String orderID) {
+		return orders.getOrder(orderID);
+	}
+
+	public void startDelivery(Base base, String droneID, Order order) {
+		Drone d = base.getDrone(droneID);
+		Flight f = new DeliveryClass(d, base, order.destination());
+		flights.addFlight(f);
+		base.removeDroneHangar(droneID);
+	}
+
 	/**
 	 * Creates and adds a hermit drone to a given base and to the universe drone
 	 * collection

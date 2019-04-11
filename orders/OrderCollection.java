@@ -24,24 +24,26 @@ public interface OrderCollection {
 	/**
 	 * Returns an order by giving its id
 	 * 
-	 * @param id - order id to return
+	 * @param orderID - order id to return
 	 * @return order with given id
 	 * @pre <code>existsOrder(id)</code>
 	 */
-	Order getOrder(String id);
+	Order getOrder(String orderID);
 
 	/**
 	 * Checks if there is any order with the given id
 	 * 
-	 * @param id - id to be checked for existance
+	 * @param orderID - id to be checked for existance
 	 * @return <code>true</code> if there is an order with gievn id,
 	 *         <code>false</code> otherwise
 	 */
-	boolean existsOrder(String id);
-	
+	boolean existsOrder(String orderID);
+
 	/**
 	 * Checks if there are no orders
-	 * @return <code>true</code> if there are no orders, <code>false</code> otherwise.
+	 * 
+	 * @return <code>true</code> if there are no orders, <code>false</code>
+	 *         otherwise.
 	 */
 	boolean isEmpty();
 }
