@@ -32,14 +32,19 @@ public interface Flight {
 	 * @return Location of the point of origin
 	 */
 	Base origin();
-	
+
 	/**
 	 * Calculates distance traveled at point of given tick
 	 * 
 	 * @param currentTick - tick of simulation
 	 */
 	void distanceTraveled(int tick);
-	
+
+	/**
+	 * Returns distance covered in flight
+	 * 
+	 * @return distance covered in flight
+	 */
 	int distanceCovered();
 
 }
