@@ -67,4 +67,13 @@ public interface FlightCollection {
 	 * @param droneID - ID of drone flying to be removed
 	 */
 	void removeFlight(String droneID);
+
+	/**
+	 * Checks if an order exists in delivered orders collection
+	 * 
+	 * @param order - order to be checkd for existance
+	 * @return <code>true</code> if order is in delivered orders collection,
+	 *         <code>false</code>
+	 */
+	boolean hasOrderBeenDelivered(Order order);
 }

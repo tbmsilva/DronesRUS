@@ -282,19 +282,18 @@ public class ManagerClass implements Manager {
 					((Relocation) f).destination().addDrone(f.drone());
 					temp.addFlight(f);
 				}
-			}
-			else {
-				boolean delivered = false;
+			} else {
 				f.increaseDistanceTraveled();
-				if(f.distanceCovered() >= f.distance()/2 && !delivered) {
+				if (f.distanceCovered() >= f.distance() / 2) {
 					Order oTemp = ((Delivery) f).getOrder();
-					OrderDelivered o = new OrderDeliveredClass(oTemp.id(), oTemp.dimension(), oTemp.destination());
-					o.setTimeStamp(tick);
-					o.setOrigin(f.origin());
-					flights.deliverOrder(o);
-					delivered = true;
+					if (!flights.hasOrderBeenDelivered(oTemp)) {
+						OrderDelivered o = new OrderDeliveredClass(oTemp.id(), oTemp.dimension(), oTemp.destination());
+						o.setTimeStamp(tick);
+						o.setOrigin(f.origin());
+						flights.deliverOrder(o);
+					}
 				}
-				if(f.distanceCovered() >= f.distance() && delivered) {
+				if (f.distanceCovered() >= f.distance()) {
 					int aux = f.distanceCovered() - f.distance();
 					f.setRange(f.drone().range() + aux);
 					f.origin().addDrone(f.drone());
@@ -303,7 +302,7 @@ public class ManagerClass implements Manager {
 			}
 		}
 		Iterator itTemp = temp.iterator();
-		while(itTemp.hasNext()) {
+		while (itTemp.hasNext()) {
 			Flight tempF = (Flight) itTemp.next();
 			flights.removeFlight(tempF.drone().droneID());
 		}

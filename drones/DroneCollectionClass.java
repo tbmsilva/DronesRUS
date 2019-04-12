@@ -81,7 +81,7 @@ public class DroneCollectionClass implements DroneCollection {
 	 */
 	private void resize() {
 		Drone[] temp = new Drone[drones.length * GROWTH_FACTOR];
-		for (int i = 0; i <= counter; i++) {
+		for (int i = 0; i < counter; i++) {
 			temp[i] = drones[i];
 		}
 		drones = temp;

@@ -99,17 +99,23 @@ public class BaseClass implements Base {
 	}
 
 	public void tickService() {
+		DroneCollection temp = new DroneCollectionClass();
 		if (!serviceBay[2].isEmpty()) {
 			Iterator it1 = serviceBay[2].iterator();
 			while (it1.hasNext()) {
 				Drone d1 = (Drone) it1.next();
 				d1.maxRange();
 				hangar.addDrone(d1);
-				Iterator it2 = serviceBay[0].iterator();
-				while (it2.hasNext()) {
-					Drone d2 = (Drone) it2.next();
-					serviceBay[2].removeDrone(d2.droneID());
-				}
+			}
+			Iterator it2 = serviceBay[0].iterator();
+			while (it2.hasNext()) {
+				Drone d2 = (Drone) it2.next();
+				temp.addDrone(d2);
+			}
+			Iterator it3 = temp.iterator();
+			while (it3.hasNext()) {
+				Drone aux = (Drone) it3.next();
+				serviceBay[2].removeDrone(aux.droneID());
 			}
 		}
 		serviceBay[2] = serviceBay[1];

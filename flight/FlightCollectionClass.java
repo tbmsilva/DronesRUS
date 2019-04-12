@@ -58,6 +58,10 @@ public class FlightCollectionClass implements FlightCollection {
 	public void deliverOrder(Order order) {
 		deliveredOrders.addOrder(order);
 	}
+	
+	public boolean hasOrderBeenDelivered(Order order) {
+		return deliveredOrders.existsOrder(order.id());
+	}
 
 	/**
 	 * Search index by ID of flights
