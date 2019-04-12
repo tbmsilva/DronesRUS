@@ -19,6 +19,10 @@ public interface Iterator {
 	 */
 	boolean hasNext();
 	
+	/**
+	 *  Returns the next object to iterate
+	 * @return the next object to iterate
+	 */
 	Object next();
 
 }
