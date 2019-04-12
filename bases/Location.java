@@ -31,13 +31,20 @@ public interface Location {
 	String coordinates();
 
 	/**
-	 * Calculates the distance between two locations
+	 * Calculates the distance between two locations for a relocation
 	 * 
 	 * @param locationB the other point to calculate the distance
 	 * @return the distance between the two locations
 	 */
 	int distanceToRelocation(Location locationB);
 
+
+	/**
+	 * Calculates the distance between two locations for a delivery
+	 * 
+	 * @param locationB the other point to calculate the distance
+	 * @return the distance between the two locations
+	 */
 	int distanceToDelivery(Location locationB);
 	
 }
