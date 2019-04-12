@@ -455,7 +455,7 @@ public class Main {
 			Base b = mn.getBase(baseID);
 			if (!b.isInHangar(droneID))
 				System.out.println(droneID + " is not at " + baseID + "!");
-			else if (!mn.existsOrder(orderID))
+			else if (!b.existsOrder(orderID))
 				System.out.println(orderID + " is not pending!");
 			else {
 				Order o = mn.getOrder(orderID);

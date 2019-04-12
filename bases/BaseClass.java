@@ -69,7 +69,7 @@ public class BaseClass implements Base {
 
 	public Iterator droneIteratorServiceBay() {
 		DroneCollection temp = new DroneCollectionClass();
-		for (int i = 0; i < 3; i++) {
+		for (int i = 2; i >= 0; i--) {
 			Iterator it = serviceBay[i].iterator();
 			while (it.hasNext())
 				temp.addDrone((Drone) it.next());
@@ -79,6 +79,13 @@ public class BaseClass implements Base {
 
 	public void addOrder(Order order) {
 		orders.addOrder(order);
+	}
+	
+	public boolean existsOrder(String orderID) {
+		if (orders.isEmpty())
+			return false;
+		else
+			return orders.existsOrder(orderID);
 	}
 
 	public Iterator orderIterator() {
@@ -107,7 +114,7 @@ public class BaseClass implements Base {
 				d1.maxRange();
 				hangar.addDrone(d1);
 			}
-			Iterator it2 = serviceBay[0].iterator();
+			Iterator it2 = serviceBay[2].iterator();
 			while (it2.hasNext()) {
 				Drone d2 = (Drone) it2.next();
 				temp.addDrone(d2);
