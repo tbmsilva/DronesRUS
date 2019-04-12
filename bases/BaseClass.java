@@ -120,6 +120,7 @@ public class BaseClass implements Base {
 		}
 		serviceBay[2] = serviceBay[1];
 		serviceBay[1] = serviceBay[0];
-
+		DroneCollection sB = new DroneCollectionClass();
+		serviceBay[0] = sB;
 	}
 }
