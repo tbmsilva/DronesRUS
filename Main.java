@@ -360,7 +360,7 @@ public class Main {
 				} else {
 					Location l1 = mn.getBase(originBase).location();
 					Location l2 = mn.getBase(targetBase).location();
-					int d = mn.distance(l1, l2);
+					int d = mn.distanceToRelocation(l1, l2);
 					if (!mn.hasRange(droneId, d)) {
 						System.out.println("Drone " + droneId + " cannot reach " + targetBase + "!");
 					} else {
@@ -459,7 +459,7 @@ public class Main {
 				System.out.println(orderID + " is not pending!");
 			else {
 				Order o = mn.getOrder(orderID);
-				int distance = (mn.distance(b.location(), o.destination())) * 2;
+				int distance = (mn.distanceToDelivery(b.location(), o.destination()));
 				if (!mn.hasRange(droneID, distance))
 					System.out.println(orderID + " is too far for " + droneID + "!");
 				else if (b.getDrone(droneID).capacity() < o.dimension())

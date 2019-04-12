@@ -229,13 +229,22 @@ public interface Manager {
 	void disband(String swarmID, Base base);
 
 	/**
-	 * Calculates distance between two locations
+	 * Calculates distance of an order delivery
+	 * 
+	 * @param origin - location from where the drone departs
+	 * @param target - location where the drone will land and deliver the order
+	 * @return distance value between the two locations
+	 */
+	int distanceToDelivery(Location origin, Location target);
+	
+	/**
+	 * Calculates distance of a drone relocation
 	 * 
 	 * @param origin - location from where the drone departs
 	 * @param target - location where the drone will land
 	 * @return distance value between the two locations
 	 */
-	int distance(Location origin, Location target);
+	int distanceToRelocation(Location origin, Location target);
 
 	/**
 	 * Checks if the given drone has enough range to get to destination

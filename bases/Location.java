@@ -36,6 +36,8 @@ public interface Location {
 	 * @param locationB the other point to calculate the distance
 	 * @return the distance between the two locations
 	 */
-	int calculateDistance(Location locationB);
+	int distanceToRelocation(Location locationB);
 
+	int distanceToDelivery(Location locationB);
+	
 }

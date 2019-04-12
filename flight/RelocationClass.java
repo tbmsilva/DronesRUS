@@ -20,7 +20,7 @@ public class RelocationClass extends AbstractFlight implements Relocation {
 	}
 
 	public int distance() {
-		return origin.location().calculateDistance(destination.location());
+		return origin.location().distanceToRelocation(destination.location());
 	}
 
 	public Base destination() {

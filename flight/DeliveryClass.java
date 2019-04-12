@@ -13,7 +13,6 @@ import orders.*;
  */
 public class DeliveryClass extends AbstractFlight implements Delivery {
 
-	private static final int BOTH_WAYS = 2;
 	private Location destination;
 	private Order order;
 
@@ -24,7 +23,7 @@ public class DeliveryClass extends AbstractFlight implements Delivery {
 	}
 
 	public int distance() {
-		return origin.location().calculateDistance(destination) * BOTH_WAYS;
+		return origin.location().distanceToDelivery(destination);
 	}
 	
 	public Order getOrder() {

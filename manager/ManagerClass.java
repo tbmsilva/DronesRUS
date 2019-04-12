@@ -213,8 +213,12 @@ public class ManagerClass implements Manager {
 		drones.removeDrone(swarmID);
 	}
 
-	public int distance(Location origin, Location target) {
-		return origin.calculateDistance(target);
+	public int distanceToDelivery(Location origin, Location target) {
+		return origin.distanceToDelivery(target);
+	}
+	
+	public int distanceToRelocation(Location origin, Location target) {
+		return origin.distanceToRelocation(target);
 	}
 
 	public boolean hasRange(String droneId, int distance) {

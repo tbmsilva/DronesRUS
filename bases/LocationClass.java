@@ -29,10 +29,15 @@ public class LocationClass implements Location {
 		return coordinates;
 	}
 
-	public int calculateDistance(Location locationB) {
+	public int distanceToRelocation(Location locationB) {
 		int a = Math.abs(latitude - locationB.latitude());
 		int b = Math.abs(longitude - locationB.longitude());
 		return (int) Math.ceil(Math.sqrt(a*a + b*b));
 	}
 
+	public int distanceToDelivery(Location locationB) {
+		int a = Math.abs(latitude - locationB.latitude());
+		int b = Math.abs(longitude - locationB.longitude());
+		return (int) Math.ceil(Math.sqrt(a*a + b*b)*2);
+	}
 }
