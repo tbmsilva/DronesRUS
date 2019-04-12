@@ -4,7 +4,6 @@
 package orders;
 
 import iterators.*;
-import bases.*;
 
 /**
  * @author tbmsilva & m.lami

@@ -41,6 +41,15 @@ public interface Base {
 	 * @pre <code>!isInHangar(drone)</code>
 	 */
 	void addDrone(Drone drone);
+	
+	/**
+	 * Checks if there is an order with given ID
+	 * 
+	 * @param orderID - order's ID to be checked for existance
+	 * @return <code>true</code> if an order exists with given id,
+	 *         <code>false</code> otherwise
+	 */
+	public boolean existsOrder(String orderID);
 
 	/**
 	 * Removes a given drone from hangar
