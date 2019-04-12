@@ -18,7 +18,10 @@ public interface Relocation extends Flight {
 	 */
 	int distance();
 	
-	
+	/**
+	 * Returns the destination base
+	 * @return the destination base
+	 */
 	Base destination();
 
 }
