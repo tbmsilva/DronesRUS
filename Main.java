@@ -16,14 +16,14 @@ public class Main {
 	private static final int MINIMUM_RANGE = 10;
 	private static final String HERMIT = "hermit";
 	private static final String SOCIABLE = "sociable";
-	
+
 	// Swarm Error Codes
 	private static final int ERROR_SAME_DRONE = 0;
 	private static final int ERROR_HERMIT_DRONE = 1;
 	private static final int ERROR_DRONE_UNAVAILABLE = 2;
 	private static final int ERROR_SWARM_ID = 3;
 	private static final int SWARM_CHECK_OK = 4;
-	
+
 	// Commands
 	private static final String EXIT = "exit";
 	private static final String BASE = "base";
@@ -92,6 +92,9 @@ public class Main {
 		in.close();
 	}
 
+	/*
+	 * Switch to redirect input to adequate process of command
+	 */
 	private static void executeOption(Manager mn, String option, Scanner in) {
 		switch (option) {
 		case BASE:
@@ -151,6 +154,13 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Reads the input from the user and inserts it in variables that store the
+	 * latitude, longitude and ID of the new base. Checks if a base with the given
+	 * ID exists. Checks if the bases's coordinates are valid by confirming they
+	 * don't coincide with another base's coordinates. If everything checks out, it
+	 * creates the base.
+	 */
 	private static void processBase(Manager mn, Scanner in) {
 		int latitude = in.nextInt();
 		int longitude = in.nextInt();
@@ -165,6 +175,14 @@ public class Main {
 			System.out.println(BASE_EXISTS);
 	}
 
+	/*
+	 * Lists all the bases in the simulation. Creates an iterator for the bases. For
+	 * each base, creates another iterator for the drones in the hangar of that base
+	 * and prints their information. Creates another iterator for the drones in the
+	 * service bay and prints their information. Also checks if the base's hangar or
+	 * service bay are empty, or even if there are no created bases, in which case,
+	 * prints the adequate message.
+	 */
 	private static void processListBases(Manager mn) {
 		if (mn.areThereBases()) {
 			Iterator itB = mn.iteratorBases();
@@ -202,6 +220,16 @@ public class Main {
 			System.out.println(NO_BASES);
 	}
 
+	/*
+	 * Creates a drone. Reads the input from the user and inserts it in the adequate
+	 * variables that store the drone's id, starting base, type of drone, capacity
+	 * and range. Checks if another drone with the given ID already exists. Checks
+	 * if a base witht he given baseID exists. Checks if the type inputed by the
+	 * user is Hermit or Sociable, or even, an unknown drone type, in which case, it
+	 * prints the adequate message. Checks if the inputed capacity is invalid.
+	 * Checks if the inputed range is invalid. If everything checks out, creates a
+	 * drone with the inputed parameters.
+	 */
 	private static void processDrone(Manager mn, Scanner in) {
 		String id = in.nextLine().trim();
 		String base = in.nextLine();
@@ -233,6 +261,16 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Sends drones to service bay. Reads the input of the user and sets a new
+	 * variable with it, indicating the base to send the drones of to the service
+	 * bay, and the treshold of range to send the drones. Creates a temporary drone
+	 * collection. Creates an int variable to count how many drones were sent to the
+	 * service bay. Checks if the inputed baseID exists. Creates an iterator for
+	 * that base's drones in hangar. Adds the drones that are below the range
+	 * treshold to the temp collection. Adds the drone in the temp collection to the
+	 * service bay of the base, and deletes them from the hangar.
+	 */
 	private static void processService(Manager mn, Scanner in) {
 		String base = in.nextLine();
 		int range = in.nextInt();
@@ -268,6 +306,14 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Creates a swarm. Reads the input from the user, adds it to the adequate
+	 * variables that hold the base's ID, swarmID, initial number of drones and all
+	 * the ids of the drones in a String array. Checks if the base exists. Checks if
+	 * the initial drone number is invalid. Holds the error code and incorrect drone
+	 * index in an int array and uses a switch to print the adequate messages. If
+	 * everything if OK, creates a swarm
+	 */
 	private static void processSwarm(Manager mn, Scanner in) {
 		String baseID = in.nextLine().trim();
 		String swarmID = in.nextLine().trim();
@@ -304,6 +350,9 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Prints the drone IDS forming a given swarm.
+	 */
 	private static void processSwarmComponents(Manager mn, Scanner in) {
 		String swarmID = in.nextLine().trim();
 		if (!mn.existsDrone(swarmID))
@@ -319,6 +368,10 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Removes drones that form a swarm and adds them back to the hangar of the
+	 * current base, delting the swarm.
+	 */
 	private static void processDisband(Manager mn, Scanner in) {
 		String baseID = in.nextLine();
 		String swarmID = in.nextLine();
@@ -335,6 +388,9 @@ public class Main {
 		}
 	}
 
+	/*
+	 * 
+	 */
 	private static void processListDrones(Manager mn) {
 		Iterator dIt = mn.iteratorDrones();
 		if (!dIt.hasNext())
@@ -435,8 +491,9 @@ public class Main {
 			while (itF.hasNext()) {
 				Flight f = (Flight) itF.next();
 				if (f instanceof Relocation) {
-					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + ((Relocation) f).destination().baseID() + " "
-							+ f.distanceCovered() + " " + f.distance() + " relocation!");
+					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " "
+							+ ((Relocation) f).destination().baseID() + " " + f.distanceCovered() + " " + f.distance()
+							+ " relocation!");
 				} else {
 					System.out.println(f.drone().droneID() + " " + f.origin().baseID() + " " + f.origin().baseID() + " "
 							+ f.distanceCovered() + " " + f.distance() + " delivery!");
@@ -480,7 +537,7 @@ public class Main {
 			Iterator itOD = mn.iteratorOrderDelivered();
 			while (itOD.hasNext()) {
 				OrderDelivered oD = (OrderDelivered) itOD.next();
-				System.out.println(oD.timeStamp() + " " + oD.id() + " " + oD.origin().baseID() + ".");	
+				System.out.println(oD.timeStamp() + " " + oD.id() + " " + oD.origin().baseID() + ".");
 			}
 		}
 	}
