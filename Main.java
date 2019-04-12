@@ -389,7 +389,7 @@ public class Main {
 	}
 
 	/*
-	 * 
+	 * Lists all existing drones.
 	 */
 	private static void processListDrones(Manager mn) {
 		Iterator dIt = mn.iteratorDrones();
@@ -401,6 +401,9 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Moves a drone from a base to another.
+	 */
 	private static void processFlyToBase(Manager mn, Scanner in) {
 		String originBase = in.nextLine();
 		String droneId = in.nextLine();
@@ -428,6 +431,10 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Creates and adds an order to the given base's order collection and global
+	 * order collection.
+	 */
 	private static void processAddOrder(Manager mn, Scanner in) {
 		String baseID = in.nextLine().trim();
 		String orderID = in.nextLine().trim();
@@ -447,6 +454,9 @@ public class Main {
 		}
 	}
 
+	/*
+	 * List pending orders in given base.
+	 */
 	private static void processOrders(Manager mn, Scanner in) {
 		String baseID = in.nextLine().trim();
 		if (!mn.existsBase(baseID))
@@ -463,6 +473,9 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Lists all orders in simulation.
+	 */
 	private static void processAllOrders(Manager mn) {
 		if (mn.noOrders())
 			System.out.println(NO_PENDING_ORDERS + "!");
@@ -483,6 +496,9 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Lists all drones currently flying.
+	 */
 	private static void processInTransit(Manager mn, Scanner in) {
 		if (mn.noFlights()) {
 			System.out.println(NO_FLYING_DRONES);
@@ -502,6 +518,9 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Attributes an order to a drone and sets it flying to the order destination.
+	 */
 	private static void processDeliver(Manager mn, Scanner in) {
 		String baseID = in.nextLine().trim();
 		String droneID = in.nextLine().trim();
@@ -530,6 +549,9 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Lists all delivered orders with tick at point of delivery.
+	 */
 	private static void processDelivered(Manager mn, Scanner in) {
 		if (mn.noOrders() || mn.noOrderDelivered())
 			System.out.println(NO_ORDERS_DELIVERED);
@@ -542,24 +564,39 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Moves the simulation in a given ammount of ticks.
+	 */
 	private static void processTicTac(Manager mn, Scanner in) {
 		int tickAdvance = in.nextInt();
 		in.nextLine();
 		mn.advanceTick(tickAdvance);
 	}
 
+	/*
+	 * Prints exit message.
+	 */
 	private static void processExit() {
 		System.out.println(EXIT_MESSAGE);
 	}
 
+	/*
+	 * Prints help menu.
+	 */
 	private static void processHelp() {
 		System.out.println(HELP_LIST);
 	}
 
+	/*
+	 * Prints unknown commmand message.
+	 */
 	private static void showUnknownCommand() {
 		System.out.println(UNKNOWN);
 	}
 
+	/*
+	 * Reads the option the user inputed.
+	 */
 	private static String readOption(Scanner in) {
 		return in.nextLine().toLowerCase();
 	}
