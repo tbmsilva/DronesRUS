@@ -288,7 +288,7 @@ public class ManagerClass implements Manager {
 				}
 			} else {
 				f.increaseDistanceTraveled();
-				if (f.distanceCovered() >= (f.distance()/ 2)) {
+				if (f.distanceCovered() >= (((Delivery)f).distance()/ 2)) {
 					Order oTemp = ((Delivery) f).getOrder();
 					if (!flights.hasOrderBeenDelivered(oTemp)) {
 						OrderDelivered o = new OrderDeliveredClass(oTemp.id(), oTemp.dimension(), oTemp.destination());
